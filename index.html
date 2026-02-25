@@ -69,6 +69,18 @@ a{text-decoration:none;color:inherit}
 .mob-btn{display:none;background:none;border:none;cursor:pointer;padding:4px}
 .mob-btn span{display:block;width:20px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;transition:all .3s}
 
+/* Mobile menu */
+.mob-menu{position:fixed;top:60px;left:0;right:0;background:rgba(5,5,8,.95);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border2);z-index:999;padding:1rem 1.5rem 1.5rem;
+  transform:translateY(-110%);opacity:0;transition:all .4s var(--ease);pointer-events:none}
+.mob-menu.open{transform:translateY(0);opacity:1;pointer-events:auto}
+.mob-menu a{display:block;padding:.75rem 0;color:var(--text2);font-family:var(--font-d);font-size:.9rem;font-weight:500;
+  border-bottom:1px solid var(--border);transition:color .3s}
+.mob-menu a:hover{color:var(--text)}
+.mob-menu a:last-child{border-bottom:none}
+.mob-menu .mob-cta{display:block;margin-top:1rem;padding:.75rem;border-radius:10px;background:var(--accent);
+  color:#050508;text-align:center;font-family:var(--font-d);font-weight:700;font-size:.9rem;border:none}
+
 /* ══════ HERO — CINEMATIC SPATIAL ══════ */
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 1.5rem 4rem}
 
@@ -264,7 +276,7 @@ a{text-decoration:none;color:inherit}
   opacity:0;transform:scale(.8);transition:all .4s var(--ease)}
 .mc.captured .mc-captured{opacity:1;transform:scale(1)}
 .mc.captured{border-color:rgba(0,229,160,.12);background:rgba(0,229,160,.03)}
-.mc.captured .mc-badge{background:rgba(0,229,160,.12);color:var(--accent)}
+.mc.captured .mc-badge{display:none}
 
 /* Glow rings */
 .glow-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(255,107,53,.06);transform:translate(-50%,-50%);animation:ringPulse 4s ease-out infinite}
@@ -458,8 +470,18 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;hei
     <li><a href="tel:+15617303316">Call Demo</a></li>
     <li><a href="https://app.conduitai.io/login" class="nav-cta">Start Free Trial</a></li>
   </ul>
-  <button class="mob-btn" onclick="this.classList.toggle('open')"><span></span><span></span><span></span></button>
+  <button class="mob-btn" id="mobBtn" onclick="document.getElementById('mobMenu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#how-it-works" onclick="document.getElementById('mobMenu').classList.remove('open')">How It Works</a>
+  <a href="#pricing" onclick="document.getElementById('mobMenu').classList.remove('open')">Pricing</a>
+  <a href="#roi" onclick="document.getElementById('mobMenu').classList.remove('open')">ROI Calculator</a>
+  <a href="#faq" onclick="document.getElementById('mobMenu').classList.remove('open')">FAQ</a>
+  <a href="tel:+15617303316" onclick="document.getElementById('mobMenu').classList.remove('open')">Call Demo</a>
+  <a href="https://app.conduitai.io/login" class="mob-cta">Start Free Trial</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
