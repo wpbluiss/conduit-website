@@ -182,18 +182,89 @@ a{text-decoration:none;color:inherit}
 /* Phone */
 .prob-visual{position:relative;display:flex;justify-content:center;perspective:800px}
 .phone-wrap{transform-style:preserve-3d;transition:transform .8s var(--ease)}
-.phone{width:270px;height:520px;border-radius:32px;background:linear-gradient(160deg,#0d0d16,#161622);
+.phone{width:270px;height:540px;border-radius:32px;background:linear-gradient(160deg,#0d0d16,#161622);
   border:1.5px solid rgba(255,255,255,.06);padding:1.25rem;position:relative;overflow:hidden;
   box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04)}
-.phone-notch{width:90px;height:24px;background:var(--bg);border-radius:0 0 16px 16px;margin:-1.25rem auto 1rem;position:relative}
+.phone-notch{width:90px;height:24px;background:var(--bg);border-radius:0 0 16px 16px;margin:-1.25rem auto .75rem;position:relative}
 .phone-notch::after{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.06)}
-.mc{padding:.8rem;border-radius:12px;margin-bottom:.5rem;background:rgba(255,107,53,.04);border:1px solid rgba(255,107,53,.08);
-  opacity:0;transform:translateY(8px);transition:all .5s var(--ease)}
-.mc.vis{opacity:1;transform:translateY(0)}
-.mc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.25rem}
-.mc-name{font-weight:600;font-size:.78rem}
-.mc-badge{font-size:.58rem;font-weight:700;padding:.12rem .4rem;border-radius:5px;background:rgba(255,107,53,.12);color:var(--orange);text-transform:uppercase;letter-spacing:.03em}
-.mc-detail{font-size:.68rem;color:var(--text3)}
+
+/* Phone status bar */
+.phone-status{display:flex;justify-content:space-between;align-items:center;padding:0 .25rem .5rem;font-size:.55rem;color:var(--text3)}
+.phone-time{font-weight:600}
+.phone-signals{display:flex;gap:3px;align-items:center}
+.phone-signals span{display:block;width:3px;border-radius:1px;background:var(--text3)}
+.phone-signals span:nth-child(1){height:4px}.phone-signals span:nth-child(2){height:6px}.phone-signals span:nth-child(3){height:8px}.phone-signals span:nth-child(4){height:10px}
+
+/* Phone header */
+.phone-header{text-align:center;padding:.5rem 0 .75rem;border-bottom:1px solid rgba(255,255,255,.04);margin-bottom:.6rem}
+.phone-header-title{font-family:var(--font-d);font-size:.7rem;font-weight:600;color:var(--text2)}
+.phone-header-sub{font-size:.55rem;color:var(--text3);margin-top:.1rem}
+
+/* Live indicator */
+.phone-live{display:flex;align-items:center;justify-content:center;gap:.35rem;padding:.3rem 0;margin-bottom:.5rem}
+.phone-live-dot{width:5px;height:5px;border-radius:50%;background:#ff3b30;animation:liveBlink 1s ease-in-out infinite}
+@keyframes liveBlink{0%,100%{opacity:1}50%{opacity:.3}}
+.phone-live-text{font-size:.55rem;color:#ff3b30;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+
+/* Notification cards — live cycling */
+.mc-container{position:relative;min-height:280px}
+.mc{padding:.75rem .85rem;border-radius:12px;margin-bottom:.45rem;
+  background:rgba(255,107,53,.04);border:1px solid rgba(255,107,53,.08);
+  position:relative;overflow:hidden;
+  opacity:0;transform:translateY(12px) scale(.96);transition:all .6s var(--ease)}
+.mc.vis{opacity:1;transform:translateY(0) scale(1)}
+.mc.exit{opacity:0;transform:translateY(-10px) scale(.96);transition:all .4s var(--ease)}
+.mc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.2rem}
+.mc-name{font-weight:600;font-size:.75rem}
+.mc-badge{font-size:.55rem;font-weight:700;padding:.1rem .35rem;border-radius:5px;background:rgba(255,107,53,.12);color:var(--orange);text-transform:uppercase;letter-spacing:.03em}
+.mc-detail{font-size:.65rem;color:var(--text3)}
+.mc-time{font-size:.5rem;color:var(--text3);margin-top:.2rem;opacity:.6}
+
+/* Incoming call overlay */
+.mc-incoming{position:absolute;inset:0;background:rgba(0,229,160,.03);border:1px solid rgba(0,229,160,.12);
+  border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.9);transition:all .5s var(--ease);pointer-events:none;z-index:5;
+  backdrop-filter:blur(8px)}
+.mc-incoming.active{opacity:1;transform:scale(1)}
+.mc-incoming-icon{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;
+  animation:incomingPulse 1s ease-in-out infinite;margin-bottom:.4rem}
+@keyframes incomingPulse{0%,100%{box-shadow:0 0 0 0 var(--accentG)}50%{box-shadow:0 0 0 12px transparent}}
+.mc-incoming-text{font-family:var(--font-d);font-size:.7rem;font-weight:600;color:var(--accent)}
+.mc-incoming-name{font-size:.6rem;color:var(--text2);margin-top:.15rem}
+
+/* Typing / processing indicator */
+.mc-typing{display:flex;align-items:center;gap:.35rem;padding:.5rem .75rem;opacity:0;transition:opacity .3s}
+.mc-typing.vis{opacity:1}
+.mc-typing-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:typeDot 1.4s ease-in-out infinite}
+.mc-typing-dot:nth-child(2){animation-delay:.2s}
+.mc-typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typeDot{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.mc-typing-label{font-size:.55rem;color:var(--accent);margin-left:.2rem}
+
+/* Sound wave visualization */
+.mc-wave{display:flex;align-items:center;gap:2px;height:20px;margin-bottom:.4rem;justify-content:center}
+.mc-wave-bar{width:2px;border-radius:1px;background:var(--accent);animation:waveBar 1.2s ease-in-out infinite;opacity:0;transition:opacity .3s}
+.mc-wave.active .mc-wave-bar{opacity:1}
+.mc-wave-bar:nth-child(1){height:6px;animation-delay:0s}
+.mc-wave-bar:nth-child(2){height:12px;animation-delay:.1s}
+.mc-wave-bar:nth-child(3){height:8px;animation-delay:.2s}
+.mc-wave-bar:nth-child(4){height:16px;animation-delay:.3s}
+.mc-wave-bar:nth-child(5){height:10px;animation-delay:.4s}
+.mc-wave-bar:nth-child(6){height:14px;animation-delay:.15s}
+.mc-wave-bar:nth-child(7){height:6px;animation-delay:.35s}
+.mc-wave-bar:nth-child(8){height:12px;animation-delay:.25s}
+.mc-wave-bar:nth-child(9){height:8px;animation-delay:.05s}
+.mc-wave-bar:nth-child(10){height:4px;animation-delay:.45s}
+@keyframes waveBar{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.3)}}
+
+/* Captured badge animation */
+.mc-captured{position:absolute;top:.5rem;right:.5rem;padding:.15rem .4rem;border-radius:4px;
+  background:rgba(0,229,160,.12);color:var(--accent);font-size:.5rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;
+  opacity:0;transform:scale(.8);transition:all .4s var(--ease)}
+.mc.captured .mc-captured{opacity:1;transform:scale(1)}
+.mc.captured{border-color:rgba(0,229,160,.12);background:rgba(0,229,160,.03)}
+.mc.captured .mc-badge{background:rgba(0,229,160,.12);color:var(--accent)}
 
 /* Glow rings */
 .glow-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(255,107,53,.06);transform:translate(-50%,-50%);animation:ringPulse 4s ease-out infinite}
@@ -450,12 +521,41 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;hei
       <div class="prob-visual" data-r="r">
         <div class="glow-ring"></div><div class="glow-ring"></div><div class="glow-ring"></div>
         <div class="phone-wrap" id="phoneWrap">
-          <div class="phone">
+          <div class="phone" id="livePhone">
             <div class="phone-notch"></div>
-            <div class="mc" data-delay="0"><div class="mc-top"><span class="mc-name">Mike Thompson</span><span class="mc-badge">Missed</span></div><div class="mc-detail">AC not cooling — emergency repair</div></div>
-            <div class="mc" data-delay="500"><div class="mc-top"><span class="mc-name">Sarah Chen</span><span class="mc-badge">Missed</span></div><div class="mc-detail">Full house re-stucco — $12K job</div></div>
-            <div class="mc" data-delay="1000"><div class="mc-top"><span class="mc-name">Amanda Foster</span><span class="mc-badge">Missed</span></div><div class="mc-detail">Office renovation consultation</div></div>
-            <div class="mc" data-delay="1500"><div class="mc-top"><span class="mc-name">Carlos Medina</span><span class="mc-badge">Missed</span></div><div class="mc-detail">Plumbing emergency — premium rate</div></div>
+            <div class="phone-status">
+              <span class="phone-time" id="phoneTime">12:00 AM</span>
+              <div class="phone-signals"><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div class="phone-header">
+              <div class="phone-header-title">Conduit AI</div>
+              <div class="phone-header-sub">Live Call Recovery</div>
+            </div>
+            <div class="phone-live"><div class="phone-live-dot"></div><span class="phone-live-text">Monitoring</span></div>
+            
+            <!-- Sound wave -->
+            <div class="mc-wave" id="mcWave">
+              <div class="mc-wave-bar"></div><div class="mc-wave-bar"></div><div class="mc-wave-bar"></div>
+              <div class="mc-wave-bar"></div><div class="mc-wave-bar"></div><div class="mc-wave-bar"></div>
+              <div class="mc-wave-bar"></div><div class="mc-wave-bar"></div><div class="mc-wave-bar"></div>
+              <div class="mc-wave-bar"></div>
+            </div>
+
+            <!-- Incoming call overlay -->
+            <div class="mc-incoming" id="mcIncoming">
+              <div class="mc-incoming-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div class="mc-incoming-text">Incoming Call</div>
+              <div class="mc-incoming-name" id="incomingName">Mike Thompson</div>
+            </div>
+
+            <!-- Notification container -->
+            <div class="mc-container" id="mcContainer"></div>
+
+            <!-- Typing indicator -->
+            <div class="mc-typing" id="mcTyping">
+              <div class="mc-typing-dot"></div><div class="mc-typing-dot"></div><div class="mc-typing-dot"></div>
+              <span class="mc-typing-label">Capturing lead info...</span>
+            </div>
           </div>
         </div>
       </div>
@@ -628,36 +728,136 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;hei
 </footer>
 
 <script>
-// Scroll reveal — lightweight
+// ─── Scroll reveal ───
 const obs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('vis');obs.unobserve(i.target)}})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('[data-r]').forEach(el=>obs.observe(el));
-
-// Hero instant show
 document.querySelector('[data-hero]')?.classList.add('vis');
 
-// Phone missed calls stagger
-const phoneObs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.querySelectorAll('.mc').forEach(c=>{setTimeout(()=>c.classList.add('vis'),+c.dataset.delay||0)});phoneObs.unobserve(i.target)}})},{threshold:.2});
-const ph=document.querySelector('.phone');if(ph)phoneObs.observe(ph);
-
-// Phone 3D tilt on mouse
+// ─── Phone 3D tilt ───
 const pw=document.getElementById('phoneWrap');
 if(pw&&window.innerWidth>768){
   pw.parentElement.addEventListener('mousemove',e=>{
     const r=pw.parentElement.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5;
-    const y=(e.clientY-r.top)/r.height-.5;
+    const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
     pw.style.transform=`rotateY(${x*12}deg) rotateX(${-y*8}deg)`;
   });
   pw.parentElement.addEventListener('mouseleave',()=>{pw.style.transform=''});
 }
 
-// Nav + scroll bar
+// ─── Nav + scroll bar ───
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('s',scrollY>50);
   document.getElementById('sbar').style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%';
 },{passive:true});
 
-// ROI
+// ─── LIVE PHONE SIMULATION ───
+(function(){
+  const leads = [
+    {name:'Mike Thompson',detail:'AC not cooling — emergency repair',value:'$2,400',type:'HVAC'},
+    {name:'Sarah Chen',detail:'Full house re-stucco — $12K job',value:'$12,000',type:'Stucco'},
+    {name:'Amanda Foster',detail:'Office renovation consultation',value:'$8,500',type:'General'},
+    {name:'Carlos Medina',detail:'Plumbing emergency — premium rate',value:'$1,800',type:'Plumbing'},
+    {name:'Jessica Williams',detail:'Roof inspection after storm',value:'$6,200',type:'Roofing'},
+    {name:'David Park',detail:'Full bathroom remodel quote',value:'$15,000',type:'Remodel'},
+    {name:'Maria Gonzalez',detail:'AC installation — new unit',value:'$4,500',type:'HVAC'},
+    {name:'Robert Kim',detail:'Commercial electrical upgrade',value:'$9,800',type:'Electrical'},
+    {name:'Lisa Chang',detail:'Kitchen renovation design',value:'$22,000',type:'Remodel'},
+    {name:'James Wilson',detail:'Emergency pipe burst repair',value:'$3,200',type:'Plumbing'},
+    {name:'Emily Santos',detail:'Balayage + cut appointment',value:'$280',type:'Salon'},
+    {name:'Nicole Adams',detail:'Bridal party hair — 6 people',value:'$1,200',type:'Salon'},
+  ];
+
+  const container=document.getElementById('mcContainer');
+  const incoming=document.getElementById('mcIncoming');
+  const incomingName=document.getElementById('incomingName');
+  const typing=document.getElementById('mcTyping');
+  const wave=document.getElementById('mcWave');
+  const phoneLive=document.querySelector('.phone-live-text');
+  const timeEl=document.getElementById('phoneTime');
+  let idx=0, cards=[], running=false;
+
+  // Update phone clock
+  function updateClock(){
+    const now=new Date();
+    let h=now.getHours(),m=now.getMinutes(),ap=h>=12?'PM':'AM';
+    h=h%12||12; m=m<10?'0'+m:m;
+    if(timeEl) timeEl.textContent=h+':'+m+' '+ap;
+  }
+  updateClock(); setInterval(updateClock,30000);
+
+  function createCard(lead){
+    const div=document.createElement('div');
+    div.className='mc';
+    div.innerHTML=`
+      <div class="mc-captured">Captured</div>
+      <div class="mc-top"><span class="mc-name">${lead.name}</span><span class="mc-badge">Missed</span></div>
+      <div class="mc-detail">${lead.detail}</div>
+      <div class="mc-time">Just now · Est. ${lead.value}</div>`;
+    return div;
+  }
+
+  async function simulateCall(){
+    if(running) return;
+    running=true;
+    const lead=leads[idx%leads.length]; idx++;
+
+    // Phase 1: Incoming call (1.5s)
+    if(phoneLive) phoneLive.textContent='Incoming Call';
+    incomingName.textContent=lead.name;
+    incoming.classList.add('active');
+    await sleep(1500);
+
+    // Phase 2: Agent answering — show wave (2s)
+    incoming.classList.remove('active');
+    if(phoneLive) phoneLive.textContent='Agent Speaking';
+    wave.classList.add('active');
+    await sleep(2000);
+
+    // Phase 3: Capturing info — typing dots (1.2s)
+    wave.classList.remove('active');
+    if(phoneLive) phoneLive.textContent='Processing';
+    typing.classList.add('vis');
+    await sleep(1200);
+    typing.classList.remove('vis');
+
+    // Phase 4: Add captured card
+    if(phoneLive) phoneLive.textContent='Lead Captured';
+    const card=createCard(lead);
+    container.prepend(card);
+    cards.unshift(card);
+    await sleep(50);
+    card.classList.add('vis');
+    await sleep(300);
+    card.classList.add('captured');
+
+    // Remove oldest if >3 cards
+    while(cards.length>3){
+      const old=cards.pop();
+      old.classList.add('exit');
+      await sleep(400);
+      old.remove();
+    }
+
+    // Phase 5: Back to monitoring
+    await sleep(800);
+    if(phoneLive) phoneLive.textContent='Monitoring';
+    running=false;
+  }
+
+  function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+
+  // Start simulation when phone is visible
+  const phoneObs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){
+    // Initial delay then start cycling
+    setTimeout(simulateCall,800);
+    setInterval(()=>{if(!running)simulateCall()},7000);
+    phoneObs.unobserve(i.target);
+  }})},{threshold:.2});
+  const ph=document.getElementById('livePhone');
+  if(ph) phoneObs.observe(ph);
+})();
+
+// ─── ROI ───
 function calcROI(){
   const c=+document.getElementById('rc').value,j=+document.getElementById('rj').value,r=+document.getElementById('rr').value;
   document.getElementById('rv1').textContent=c;document.getElementById('rv2').textContent='$'+j.toLocaleString();document.getElementById('rv3').textContent=r+'%';
@@ -669,7 +869,7 @@ function calcROI(){
 }
 calcROI();
 
-// Smooth anchor
+// ─── Smooth anchor ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
 </script>
 </body>
