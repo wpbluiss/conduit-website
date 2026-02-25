@@ -627,6 +627,74 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;hei
   </div>
 </section>
 
+
+<!-- FOUNDING 10 -->
+<style>
+.founding-section{padding:80px 20px;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#0a0a0a 100%);position:relative;overflow:hidden;border-top:1px solid rgba(255,215,0,.2);border-bottom:1px solid rgba(255,215,0,.2)}
+.founding-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 50%,rgba(255,215,0,.05) 0%,transparent 70%);pointer-events:none}
+.founding-badge{display:inline-block;background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;padding:6px 18px;border-radius:50px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px;animation:pulse-gold 2s ease-in-out infinite}
+@keyframes pulse-gold{0%,100%{box-shadow:0 0 10px rgba(255,215,0,.3)}50%{box-shadow:0 0 25px rgba(255,215,0,.6)}}
+.founding-title{font-size:clamp(32px,5vw,52px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.1}
+.founding-title span{background:linear-gradient(135deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.founding-subtitle{font-size:18px;color:#999;max-width:600px;margin:0 auto 40px;line-height:1.6}
+.founding-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,215,0,.2);border-radius:20px;padding:48px 40px;max-width:520px;margin:0 auto;position:relative;backdrop-filter:blur(10px)}
+.founding-card::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,#FFD700,transparent)}
+.founding-spots{display:flex;justify-content:center;gap:8px;margin-bottom:30px}
+.spot{width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,215,0,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#666}
+.spot.taken{background:linear-gradient(135deg,#FFD700,#FFA500);border-color:#FFD700;color:#000}
+.spot.available{border-color:rgba(255,215,0,.4);color:#FFD700}
+.founding-price{margin:24px 0}
+.founding-price .original{font-size:18px;color:#666;text-decoration:line-through;margin-bottom:4px}
+.founding-price .sale{font-size:56px;font-weight:800;color:#fff;line-height:1}
+.founding-price .sale span{font-size:20px;color:#999;font-weight:400}
+.founding-price .savings{display:inline-block;background:rgba(255,215,0,.1);color:#FFD700;padding:4px 14px;border-radius:50px;font-size:14px;font-weight:600;margin-top:8px}
+.founding-features{list-style:none;padding:0;margin:30px 0;text-align:left}
+.founding-features li{padding:10px 0;color:#ccc;font-size:15px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.founding-features li:last-child{border-bottom:none}
+.founding-features li::before{content:'\2726';color:#FFD700;font-size:12px;flex-shrink:0}
+.founding-cta{display:inline-block;background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;padding:18px 48px;border-radius:12px;font-size:18px;font-weight:700;text-decoration:none;transition:all .3s ease;width:100%;box-sizing:border-box;text-align:center}
+.founding-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,215,0,.3)}
+.founding-urgency{margin-top:16px;font-size:13px;color:#999}
+.founding-urgency strong{color:#FFD700}
+</style>
+<section class="founding-section" id="founding">
+<div style="text-align:center">
+<div class="founding-badge">Limited Launch Offer</div>
+<h2 class="founding-title">Join the <span>Founding 10</span></h2>
+<p class="founding-subtitle">Lock in our lowest price ever. Only 10 founding member spots available at this rate. Once they are gone, they are gone forever.</p>
+<div class="founding-card">
+<div class="founding-spots">
+<div class="spot taken">1</div>
+<div class="spot available">2</div>
+<div class="spot available">3</div>
+<div class="spot available">4</div>
+<div class="spot available">5</div>
+<div class="spot available">6</div>
+<div class="spot available">7</div>
+<div class="spot available">8</div>
+<div class="spot available">9</div>
+<div class="spot available">10</div>
+</div>
+<p style="font-size:13px;color:#FFD700;margin-bottom:24px;font-weight:600">1 of 10 spots claimed</p>
+<div class="founding-price">
+<div class="original">$2,388/year ($199/mo)</div>
+<div class="sale">$999 <span>/year</span></div>
+<div class="savings">Save $1,389 - 58% off</div>
+</div>
+<ul class="founding-features">
+<li>AI voice agent custom-built for your business</li>
+<li>24/7 call capture - nights, weekends, holidays</li>
+<li>Real-time lead notifications via email and SMS</li>
+<li>Up to 75 leads/month included</li>
+<li>Full setup and configuration - done for you</li>
+<li>Priority support and direct founder access</li>
+<li>Lock in this rate for life - never increases</li>
+</ul>
+<a href="https://buy.stripe.com/9B68wIg8N97K0qu1Nqe3e03" class="founding-cta">Claim Your Founding Spot - $999/year</a>
+<p class="founding-urgency"><strong>9 spots remaining.</strong> Price goes to $199/mo after all spots are filled.</p>
+</div>
+</div>
+</section>
 <!-- PRICING -->
 <section class="sec pricing" id="pricing">
   <div class="pricing-glow"></div>
