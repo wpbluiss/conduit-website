@@ -3,964 +3,1424 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conduit AI — Never Miss Another Lead | 14-Day Free Trial</title>
-<meta name="description" content="Never miss another lead. Conduit answers every missed call, captures lead details, and delivers ready-to-close opportunities to your inbox — 24/7. Try free for 14 days.">
-<meta name="keywords" content="lead recovery, missed call capture, AI receptionist, service business leads, HVAC leads, plumbing leads, roofing leads, call answering service">
-<meta name="author" content="Conduit AI LLC">
-<meta property="og:title" content="Conduit AI — Never Miss Another Lead | Free 14-Day Trial">
-<meta property="og:description" content="Never miss another lead. Conduit answers every missed call, captures lead details, and delivers ready-to-close opportunities — 24/7. Try free for 14 days.">
+<title>Conduit AI — Never Miss a Lead Again</title>
+<meta name="description" content="AI voice agent that answers your missed calls, has real conversations, captures leads, and sends them to you instantly. Built for service businesses.">
+<meta name="keywords" content="AI answering service, missed call recovery, virtual receptionist, lead capture, HVAC answering service, salon answering service, plumber answering service">
+<link rel="canonical" href="https://conduitai.io/">
+<meta property="og:title" content="Conduit AI — Never Miss a Lead Again">
+<meta property="og:description" content="AI voice agent that answers missed calls and captures leads for service businesses.">
+<meta property="og:url" content="https://conduitai.io/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.conduitai.io/">
-<meta name="twitter:card" content="summary">
-<link rel="apple-touch-icon" href="logo-256.png">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#050508;--bg2:#08080e;--bg3:#0c0c14;--card:#0e0e18;
-  --text:#eeeef2;--text2:#8e8ea0;--text3:#55556a;
-  --accent:#00e5a0;--accent2:#00c9ff;--accentG:rgba(0,229,160,.3);
-  --blue:#3b82f6;--orange:#ff6b35;
-  --border:rgba(255,255,255,.04);--border2:rgba(255,255,255,.08);
-  --font-d:'Sora',sans-serif;--font-b:'DM Sans',sans-serif;--font-m:'Space Mono',monospace;
-  --ease:cubic-bezier(.16,1,.3,1);
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
-a{text-decoration:none;color:inherit}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --bg: #050810;
+    --bg-card: rgba(255,255,255,0.025);
+    --border: rgba(255,255,255,0.06);
+    --text: #e8eaed;
+    --text-dim: rgba(255,255,255,0.5);
+    --text-dimmer: rgba(255,255,255,0.3);
+    --cyan: #00d4ff;
+    --purple: #7b2fff;
+    --gradient: linear-gradient(135deg, #00d4ff, #7b2fff);
+    --font: 'Instrument Sans', -apple-system, sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
 
-/* ══════ AMBIENT BACKGROUND — PURE CSS, ZERO JS ══════ */
-.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.ambient-orb{position:absolute;border-radius:50%;filter:blur(140px);will-change:transform;animation:ambFloat 30s ease-in-out infinite}
-.ambient-orb.a1{width:50vw;height:50vw;max-width:700px;max-height:700px;background:rgba(0,229,160,.07);top:-15%;right:-10%}
-.ambient-orb.a2{width:40vw;height:40vw;max-width:500px;max-height:500px;background:rgba(59,130,246,.05);bottom:-10%;left:-8%;animation-delay:-10s}
-.ambient-orb.a3{width:30vw;height:30vw;max-width:400px;max-height:400px;background:rgba(255,107,53,.04);top:40%;left:50%;animation-delay:-20s}
-@keyframes ambFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.06)}66%{transform:translate(-40px,30px) scale(.94)}}
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* Dot grid overlay */
-.ambient-dots{position:absolute;inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:32px 32px;
-  mask-image:radial-gradient(ellipse 70% 50% at 50% 30%,black,transparent);
-}
+  a { color: var(--cyan); text-decoration: none; }
+  
+  /* ===== REVEAL ANIMATION SYSTEM ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
 
-/* ══════ SCROLL PROGRESS ══════ */
-.scroll-bar{position:fixed;top:0;left:0;height:2px;z-index:9999;
-  background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));
-  width:0%;box-shadow:0 0 12px var(--accentG);transition:width 50ms linear}
+  /* ===== NAVIGATION ===== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 40px;
+    transition: all 0.4s ease;
+  }
+  .nav.scrolled {
+    background: rgba(5,8,16,0.85);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--gradient);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15));
+    border-radius: inherit;
+  }
+  .logo .accent { color: var(--cyan); }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    padding: 9px 20px;
+    background: var(--gradient);
+    border-radius: 8px;
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
-/* ══════ NAV ══════ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(5,5,8,.5);backdrop-filter:blur(24px) saturate(180%);
-  border-bottom:1px solid var(--border);transition:all .4s var(--ease)}
-.nav.s{background:rgba(5,5,8,.9);box-shadow:0 4px 30px rgba(0,0,0,.4);border-bottom-color:var(--border2)}
-.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:var(--font-d);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
-.nav-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--blue));display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px var(--accentG)}
-.nav-mark svg{width:16px;height:16px}
-.nav-logo b{color:var(--accent)}
-.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
-.nav-links a{color:var(--text2);font-size:.82rem;font-weight:500;transition:color .3s}
-.nav-links a:hover{color:var(--text)}
-.nav-cta{padding:.45rem 1.1rem;border-radius:8px;font-weight:600;font-size:.82rem;background:var(--accent);color:#050508;box-shadow:0 0 16px var(--accentG);transition:all .3s var(--ease)}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 28px var(--accentG)}
-.mob-btn{display:none;background:none;border:none;cursor:pointer;padding:4px}
-.mob-btn span{display:block;width:20px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;transition:all .3s}
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.07) 0%, rgba(123,47,255,0.04) 40%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px 6px 8px;
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.12);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--cyan);
+    font-weight: 500;
+    margin-bottom: 32px;
+    letter-spacing: 0.01em;
+  }
+  .hero-badge .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    color: #fff;
+    max-width: 800px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--text-dim);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: var(--gradient);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 28px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-proof {
+    margin-top: 56px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-proof .stat {
+    text-align: center;
+  }
+  .hero-proof .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--mono);
+    letter-spacing: -0.02em;
+  }
+  .hero-proof .stat-label {
+    font-size: 13px;
+    color: var(--text-dimmer);
+    margin-top: 4px;
+  }
+  .hero-proof .divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
 
-/* Mobile menu */
-.mob-menu{position:fixed;top:60px;left:0;right:0;background:rgba(5,5,8,.95);backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border2);z-index:999;padding:1rem 1.5rem 1.5rem;
-  transform:translateY(-110%);opacity:0;transition:all .4s var(--ease);pointer-events:none}
-.mob-menu.open{transform:translateY(0);opacity:1;pointer-events:auto}
-.mob-menu a{display:block;padding:.75rem 0;color:var(--text2);font-family:var(--font-d);font-size:.9rem;font-weight:500;
-  border-bottom:1px solid var(--border);transition:color .3s}
-.mob-menu a:hover{color:var(--text)}
-.mob-menu a:last-child{border-bottom:none}
-.mob-menu .mob-cta{display:block;margin-top:1rem;padding:.75rem;border-radius:10px;background:var(--accent);
-  color:#050508;text-align:center;font-family:var(--font-d);font-weight:700;font-size:.9rem;border:none}
+  /* ===== PROBLEM SECTION ===== */
+  .problem {
+    padding: 120px 24px;
+    position: relative;
+  }
+  .problem-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .section-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+  }
+  .problem h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: #fff;
+    max-width: 700px;
+    margin: 0 auto 48px;
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .problem-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: left;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .problem-card:hover {
+    border-color: rgba(0,212,255,0.15);
+    transform: translateY(-4px);
+  }
+  .problem-card .icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .problem-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .problem-card p {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .problem-stat {
+    margin-top: 56px;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(123,47,255,0.04));
+    border: 1px solid rgba(0,212,255,0.08);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .problem-stat .big-num {
+    font-family: var(--mono);
+    font-size: 56px;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .problem-stat .big-label {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 300px;
+    text-align: left;
+  }
 
-/* ══════ HERO — CINEMATIC SPATIAL ══════ */
-.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 1.5rem 4rem}
+  /* ===== HOW IT WORKS ===== */
+  .how {
+    padding: 120px 24px;
+  }
+  .how-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .how h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .how-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    margin-bottom: 64px;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 48px;
+    left: 16.66%;
+    right: 16.66%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    opacity: 0.15;
+  }
+  .step {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 28px 32px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .step:hover { border-color: rgba(0,212,255,0.15); }
+  .step-num {
+    width: 56px;
+    height: 56px;
+    background: var(--gradient);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+  .step h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .step p {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
 
-/* 3D perspective grid floor */
-.hero-floor{position:absolute;bottom:0;left:-50%;right:-50%;height:60vh;
-  background-image:linear-gradient(rgba(0,229,160,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,.035) 1px,transparent 1px);
-  background-size:60px 60px;
-  transform:perspective(400px) rotateX(65deg);transform-origin:center bottom;
-  mask-image:linear-gradient(to top,rgba(0,0,0,.6),transparent 90%);
-  animation:floorScroll 15s linear infinite}
-@keyframes floorScroll{0%{background-position:0 0}100%{background-position:0 60px}}
+  /* ===== DEMO ===== */
+  .demo {
+    padding: 120px 24px;
+    position: relative;
+  }
+  .demo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(123,47,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .demo-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .demo h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .demo-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+  .demo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 48px 40px;
+    backdrop-filter: blur(12px);
+  }
+  .demo-phone {
+    font-family: var(--mono);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .demo-phone a {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+  }
+  .demo-desc {
+    font-size: 16px;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .demo-features {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .demo-feature {
+    font-size: 14px;
+    color: var(--text-dimmer);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .demo-feature .check {
+    color: var(--cyan);
+    font-size: 16px;
+  }
 
-/* Horizon glow line */
-.hero-horizon{position:absolute;bottom:38vh;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent 10%,rgba(0,229,160,.15) 50%,transparent 90%);
-  box-shadow:0 0 40px 10px rgba(0,229,160,.04)}
+  /* ===== INDUSTRIES ===== */
+  .industries {
+    padding: 120px 24px;
+  }
+  .industries-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .industries h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 48px;
+  }
+  .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .industry-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: left;
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .industry-card:hover {
+    border-color: rgba(0,212,255,0.15);
+    transform: translateY(-2px);
+  }
+  .industry-card .ind-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    background: rgba(0,212,255,0.06);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .industry-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .industry-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
 
-/* Vertical light beams */
-.hero-beam{position:absolute;width:1px;height:40vh;bottom:0;
-  background:linear-gradient(to top,rgba(0,229,160,.08),transparent);opacity:0;
-  animation:beamPulse 8s ease-in-out infinite}
-.hero-beam:nth-child(1){left:20%;animation-delay:0s}
-.hero-beam:nth-child(2){left:50%;animation-delay:2.5s}
-.hero-beam:nth-child(3){left:80%;animation-delay:5s}
-@keyframes beamPulse{0%,100%{opacity:0;height:20vh}50%{opacity:1;height:45vh}}
+  /* ===== FOUNDING 10 ===== */
+  .founding {
+    padding: 120px 24px;
+    position: relative;
+  }
+  .founding::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent, rgba(0,212,255,0.02) 50%, transparent);
+    pointer-events: none;
+  }
+  .founding-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .founding h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .founding-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .founding-card {
+    background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(123,47,255,0.04));
+    border: 1px solid rgba(0,212,255,0.1);
+    border-radius: 24px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .founding-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: var(--gradient);
+    border-radius: 2px;
+  }
+  .founding-perks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+  .founding-perk {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .founding-perk .check { color: var(--cyan); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .founding-slots {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--cyan);
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
 
-/* Floating light particles — pure CSS */
-.hero-mote{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--accent);
-  opacity:0;animation:moteRise 12s ease-in-out infinite}
-.hero-mote:nth-child(1){left:15%;animation-delay:0s;bottom:10%}
-.hero-mote:nth-child(2){left:35%;animation-delay:3s;bottom:5%}
-.hero-mote:nth-child(3){left:55%;animation-delay:6s;bottom:15%}
-.hero-mote:nth-child(4){left:75%;animation-delay:9s;bottom:8%}
-.hero-mote:nth-child(5){left:90%;animation-delay:1.5s;bottom:12%}
-.hero-mote:nth-child(6){left:8%;animation-delay:4.5s;bottom:20%}
-.hero-mote:nth-child(7){left:45%;animation-delay:7.5s;bottom:3%}
-.hero-mote:nth-child(8){left:65%;animation-delay:10.5s;bottom:18%}
-@keyframes moteRise{0%{opacity:0;transform:translateY(0) scale(.5)}20%{opacity:.6}80%{opacity:.4}100%{opacity:0;transform:translateY(-50vh) scale(1.2)}}
+  /* ===== PRICING ===== */
+  .pricing {
+    padding: 120px 24px;
+  }
+  .pricing-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .pricing h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .pricing-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    margin-bottom: 56px;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .price-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: left;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .price-card:hover { border-color: rgba(0,212,255,0.15); }
+  .price-card.popular {
+    border-color: rgba(0,212,255,0.2);
+    background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(123,47,255,0.02));
+  }
+  .price-card.popular::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -1px;
+    left: 32px;
+    right: 32px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--cyan);
+    background: var(--bg);
+    padding: 4px 12px;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid rgba(0,212,255,0.2);
+    border-top: none;
+  }
+  .price-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cyan);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .price-name {
+    font-size: 18px;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .price-amount {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .price-amount span {
+    font-size: 18px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .price-trial {
+    font-size: 14px;
+    color: var(--cyan);
+    margin-top: 8px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .price-features li {
+    font-size: 14px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .price-features li::before {
+    content: '✓';
+    color: var(--cyan);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .price-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    text-align: center;
+    background: var(--gradient);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-decoration: none;
+  }
+  .price-btn:hover { opacity: 0.9; }
+  .price-btn.outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+  }
+  .price-btn.outline:hover { border-color: rgba(255,255,255,0.2); }
 
-.hero-content{position:relative;z-index:10;text-align:center;max-width:880px}
+  /* ===== CALCULATOR ===== */
+  .calc {
+    padding: 120px 24px;
+  }
+  .calc-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .calc h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .calc-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+  .calc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 48px 40px;
+    text-align: left;
+  }
+  .calc-row {
+    margin-bottom: 28px;
+  }
+  .calc-label {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .calc-slider {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    outline: none;
+  }
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--gradient);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .calc-value {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--cyan);
+    margin-top: 8px;
+  }
+  .calc-result {
+    margin-top: 32px;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(123,47,255,0.06));
+    border: 1px solid rgba(0,212,255,0.1);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .calc-result .big {
+    font-family: var(--mono);
+    font-size: 42px;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .calc-result .sub {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
 
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:100px;
-  background:rgba(0,229,160,.04);border:1px solid rgba(0,229,160,.12);
-  font-family:var(--font-m);font-size:.72rem;color:var(--accent);letter-spacing:.02em;
-  backdrop-filter:blur(10px)}
-.live-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accentG);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.8)}}
+  /* ===== FAQ ===== */
+  .faq {
+    padding: 120px 24px;
+  }
+  .faq-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .faq h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .faq-q {
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-q .arrow {
+    font-size: 20px;
+    color: var(--text-dimmer);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .faq-item.open .arrow { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding-top: 16px;
+  }
 
-.hero-title{font-family:var(--font-d);font-size:clamp(2.6rem,6.5vw,4.8rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin:1.5rem 0 1.2rem}
-.hero-title .g{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent));background-size:200% auto;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
-@keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+  /* ===== FINAL CTA ===== */
+  .final-cta {
+    padding: 120px 24px;
+    text-align: center;
+    position: relative;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta h2 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: #fff;
+    max-width: 600px;
+    margin: 0 auto 16px;
+    line-height: 1.15;
+    position: relative;
+  }
+  .final-cta p {
+    font-size: 18px;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    position: relative;
+  }
 
-.hero-sub{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--text2);line-height:1.75;max-width:540px;margin:0 auto 2.5rem}
+  /* ===== FOOTER ===== */
+  .footer {
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-copy {
+    font-size: 13px;
+    color: var(--text-dimmer);
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-dimmer);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text); }
 
-.hero-actions{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .industry-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .founding-perks { grid-template-columns: 1fr; }
+    .problem-stat { flex-direction: column; gap: 16px; }
+    .hero-proof { gap: 24px; }
+    .hero-proof .divider { display: none; }
+    .demo-card { padding: 32px 24px; }
+    .founding-card { padding: 32px 24px; }
+    .calc-card { padding: 32px 24px; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    .footer-inner { flex-direction: column; }
+  }
 
-.btn-p{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:12px;
-  background:var(--accent);color:#050508;font-family:var(--font-d);font-size:.92rem;font-weight:700;
-  border:none;cursor:pointer;transition:all .4s var(--ease);position:relative;overflow:hidden;
-  box-shadow:0 0 40px var(--accentG),0 4px 20px rgba(0,0,0,.3)}
-.btn-p::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .6s}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 0 60px var(--accentG),0 12px 32px rgba(0,0,0,.4)}
-.btn-p:hover::after{transform:translateX(100%)}
-
-.btn-g{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:12px;
-  background:rgba(255,255,255,.03);color:var(--text);font-family:var(--font-d);font-size:.92rem;font-weight:500;
-  border:1px solid var(--border2);cursor:pointer;transition:all .4s var(--ease);backdrop-filter:blur(8px)}
-.btn-g:hover{border-color:var(--accent);background:rgba(0,229,160,.04);transform:translateY(-3px)}
-
-/* Stats pills */
-.hero-pills{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:3.5rem;flex-wrap:wrap}
-.pill{display:flex;align-items:center;gap:.65rem;padding:.7rem 1.3rem;border-radius:100px;
-  background:rgba(255,255,255,.02);border:1px solid var(--border);backdrop-filter:blur(8px);transition:all .4s var(--ease)}
-.pill:hover{border-color:rgba(0,229,160,.2);background:rgba(0,229,160,.03);transform:translateY(-2px)}
-.pill .v{font-family:var(--font-d);font-size:1.2rem;font-weight:800;color:var(--accent)}
-.pill .l{font-size:.72rem;color:var(--text3);line-height:1.3}
-
-/* ══════ SECTION TRANSITIONS — GRADIENT DIVIDERS ══════ */
-.section-fade{height:120px;position:relative;z-index:2}
-.section-fade.to-dark{background:linear-gradient(var(--bg2),var(--bg))}
-.section-fade.to-raised{background:linear-gradient(var(--bg),var(--bg2))}
-
-/* ══════ SOCIAL PROOF — INFINITE MARQUEE ══════ */
-.proof{padding:1.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;position:relative;z-index:2;background:rgba(5,5,8,.7);backdrop-filter:blur(16px)}
-.proof-track{display:flex;align-items:center;gap:3rem;animation:marquee 20s linear infinite;width:max-content}
-.proof-item{font-family:var(--font-d);font-weight:700;font-size:.85rem;color:var(--text3);white-space:nowrap}
-.proof-sep{width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.3;flex-shrink:0}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* ══════ COMMON ══════ */
-.sec{padding:7rem 1.5rem;position:relative;z-index:2}
-.sec-inner{max-width:1080px;margin:0 auto}
-.label{font-family:var(--font-m);font-size:.7rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
-.label::before{content:'';width:20px;height:1px;background:var(--accent);opacity:.4}
-.sec-title{font-family:var(--font-d);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.12;letter-spacing:-.03em;margin-bottom:.75rem}
-.sec-sub{font-size:1rem;color:var(--text2);max-width:500px;line-height:1.7}
-
-/* ══════ PROBLEM ══════ */
-.problem{background:var(--bg)}
-.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.prob-stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:2rem}
-.prob-stat{padding:1.25rem;border-radius:14px;background:rgba(255,255,255,.015);border:1px solid var(--border);
-  transition:all .5s var(--ease);position:relative;overflow:hidden}
-.prob-stat::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent);opacity:0;transition:opacity .5s}
-.prob-stat:hover{border-color:rgba(255,107,53,.15);transform:translateY(-3px);background:rgba(255,107,53,.02)}
-.prob-stat:hover::after{opacity:1}
-.prob-val{font-family:var(--font-d);font-size:1.75rem;font-weight:800;color:var(--orange)}
-.prob-lbl{font-size:.78rem;color:var(--text2);margin-top:.2rem}
-
-/* Phone */
-.prob-visual{position:relative;display:flex;justify-content:center;perspective:800px}
-.phone-wrap{transform-style:preserve-3d;transition:transform .8s var(--ease)}
-.phone{width:270px;height:540px;border-radius:32px;background:linear-gradient(160deg,#0d0d16,#161622);
-  border:1.5px solid rgba(255,255,255,.06);padding:1.25rem;position:relative;overflow:hidden;
-  box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04)}
-.phone-notch{width:90px;height:24px;background:var(--bg);border-radius:0 0 16px 16px;margin:-1.25rem auto .75rem;position:relative}
-.phone-notch::after{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.06)}
-
-/* Phone status bar */
-.phone-status{display:flex;justify-content:space-between;align-items:center;padding:0 .25rem .5rem;font-size:.55rem;color:var(--text3)}
-.phone-time{font-weight:600}
-.phone-signals{display:flex;gap:3px;align-items:center}
-.phone-signals span{display:block;width:3px;border-radius:1px;background:var(--text3)}
-.phone-signals span:nth-child(1){height:4px}.phone-signals span:nth-child(2){height:6px}.phone-signals span:nth-child(3){height:8px}.phone-signals span:nth-child(4){height:10px}
-
-/* Phone header */
-.phone-header{text-align:center;padding:.5rem 0 .75rem;border-bottom:1px solid rgba(255,255,255,.04);margin-bottom:.6rem}
-.phone-header-title{font-family:var(--font-d);font-size:.7rem;font-weight:600;color:var(--text2)}
-.phone-header-sub{font-size:.55rem;color:var(--text3);margin-top:.1rem}
-
-/* Live indicator */
-.phone-live{display:flex;align-items:center;justify-content:center;gap:.35rem;padding:.3rem 0;margin-bottom:.5rem}
-.phone-live-dot{width:5px;height:5px;border-radius:50%;background:#ff3b30;animation:liveBlink 1s ease-in-out infinite}
-@keyframes liveBlink{0%,100%{opacity:1}50%{opacity:.3}}
-.phone-live-text{font-size:.55rem;color:#ff3b30;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
-
-/* Notification cards — live cycling */
-.mc-container{position:relative;min-height:280px}
-.mc{padding:.75rem .85rem;border-radius:12px;margin-bottom:.45rem;
-  background:rgba(255,107,53,.04);border:1px solid rgba(255,107,53,.08);
-  position:relative;overflow:hidden;
-  opacity:0;transform:translateY(12px) scale(.96);transition:all .6s var(--ease)}
-.mc.vis{opacity:1;transform:translateY(0) scale(1)}
-.mc.exit{opacity:0;transform:translateY(-10px) scale(.96);transition:all .4s var(--ease)}
-.mc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.2rem}
-.mc-name{font-weight:600;font-size:.75rem}
-.mc-badge{font-size:.55rem;font-weight:700;padding:.1rem .35rem;border-radius:5px;background:rgba(255,107,53,.12);color:var(--orange);text-transform:uppercase;letter-spacing:.03em}
-.mc-detail{font-size:.65rem;color:var(--text3)}
-.mc-time{font-size:.5rem;color:var(--text3);margin-top:.2rem;opacity:.6}
-
-/* Incoming call overlay */
-.mc-incoming{position:absolute;inset:0;background:rgba(0,229,160,.03);border:1px solid rgba(0,229,160,.12);
-  border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  opacity:0;transform:scale(.9);transition:all .5s var(--ease);pointer-events:none;z-index:5;
-  backdrop-filter:blur(8px)}
-.mc-incoming.active{opacity:1;transform:scale(1)}
-.mc-incoming-icon{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;
-  animation:incomingPulse 1s ease-in-out infinite;margin-bottom:.4rem}
-@keyframes incomingPulse{0%,100%{box-shadow:0 0 0 0 var(--accentG)}50%{box-shadow:0 0 0 12px transparent}}
-.mc-incoming-text{font-family:var(--font-d);font-size:.7rem;font-weight:600;color:var(--accent)}
-.mc-incoming-name{font-size:.6rem;color:var(--text2);margin-top:.15rem}
-
-/* Typing / processing indicator */
-.mc-typing{display:flex;align-items:center;gap:.35rem;padding:.5rem .75rem;opacity:0;transition:opacity .3s}
-.mc-typing.vis{opacity:1}
-.mc-typing-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:typeDot 1.4s ease-in-out infinite}
-.mc-typing-dot:nth-child(2){animation-delay:.2s}
-.mc-typing-dot:nth-child(3){animation-delay:.4s}
-@keyframes typeDot{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
-.mc-typing-label{font-size:.55rem;color:var(--accent);margin-left:.2rem}
-
-/* Sound wave visualization */
-.mc-wave{display:flex;align-items:center;gap:2px;height:20px;margin-bottom:.4rem;justify-content:center}
-.mc-wave-bar{width:2px;border-radius:1px;background:var(--accent);animation:waveBar 1.2s ease-in-out infinite;opacity:0;transition:opacity .3s}
-.mc-wave.active .mc-wave-bar{opacity:1}
-.mc-wave-bar:nth-child(1){height:6px;animation-delay:0s}
-.mc-wave-bar:nth-child(2){height:12px;animation-delay:.1s}
-.mc-wave-bar:nth-child(3){height:8px;animation-delay:.2s}
-.mc-wave-bar:nth-child(4){height:16px;animation-delay:.3s}
-.mc-wave-bar:nth-child(5){height:10px;animation-delay:.4s}
-.mc-wave-bar:nth-child(6){height:14px;animation-delay:.15s}
-.mc-wave-bar:nth-child(7){height:6px;animation-delay:.35s}
-.mc-wave-bar:nth-child(8){height:12px;animation-delay:.25s}
-.mc-wave-bar:nth-child(9){height:8px;animation-delay:.05s}
-.mc-wave-bar:nth-child(10){height:4px;animation-delay:.45s}
-@keyframes waveBar{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.3)}}
-
-/* Captured badge animation */
-.mc-captured{position:absolute;top:.5rem;right:.5rem;padding:.15rem .4rem;border-radius:4px;
-  background:rgba(0,229,160,.12);color:var(--accent);font-size:.5rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.04em;
-  opacity:0;transform:scale(.8);transition:all .4s var(--ease)}
-.mc.captured .mc-captured{opacity:1;transform:scale(1)}
-.mc.captured{border-color:rgba(0,229,160,.12);background:rgba(0,229,160,.03)}
-.mc.captured .mc-badge{display:none}
-
-/* Glow rings */
-.glow-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(255,107,53,.06);transform:translate(-50%,-50%);animation:ringPulse 4s ease-out infinite}
-.glow-ring:nth-child(1){width:300px;height:300px}.glow-ring:nth-child(2){width:380px;height:380px;animation-delay:1.3s}.glow-ring:nth-child(3){width:460px;height:460px;animation-delay:2.6s}
-@keyframes ringPulse{0%{opacity:.4;transform:translate(-50%,-50%) scale(.85)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.15)}}
-
-/* ══════ HOW IT WORKS — VERTICAL STEPS ══════ */
-.hiw{background:var(--bg2)}
-.hiw-head{text-align:center;margin-bottom:4rem}
-.hiw-head .label{justify-content:center}
-.hiw-head .sec-sub{margin:0 auto}
-
-.steps{max-width:600px;margin:0 auto;position:relative;padding-left:40px}
-/* Vertical line */
-.steps::before{content:'';position:absolute;top:0;left:19px;width:2px;height:100%;
-  background:linear-gradient(to bottom,var(--accent),var(--blue),transparent);opacity:.12}
-
-.step{position:relative;margin-bottom:3.5rem;padding-left:2rem}
-.step:last-child{margin-bottom:0}
-.step-node{position:absolute;left:-21px;top:0;width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--blue));display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-d);font-size:1rem;font-weight:800;color:#050508;
-  box-shadow:0 0 24px var(--accentG);z-index:2}
-.step h3{font-family:var(--font-d);font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
-.step p{font-size:.88rem;color:var(--text2);line-height:1.65}
-
-/* ══════ DEMO ══════ */
-.demo{background:var(--bg);position:relative;overflow:hidden}
-.demo-glow{position:absolute;top:50%;left:50%;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,229,160,.05),transparent 65%);transform:translate(-50%,-50%);filter:blur(60px);pointer-events:none}
-.demo-inner{max-width:650px;margin:0 auto;text-align:center;position:relative;z-index:2}
-.demo-inner .label{justify-content:center}
-
-.demo-box{display:inline-flex;align-items:center;gap:1.25rem;padding:1.75rem 2.5rem;border-radius:20px;
-  background:rgba(255,255,255,.02);border:1px solid var(--border);margin-top:2rem;
-  transition:all .5s var(--ease);backdrop-filter:blur(8px)}
-.demo-box:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,229,160,.06)}
-.demo-icon{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--blue));
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  box-shadow:0 0 20px var(--accentG);animation:ring 3s ease-in-out infinite}
-@keyframes ring{0%,100%{transform:rotate(0)}5%{transform:rotate(-10deg) scale(1.05)}10%{transform:rotate(10deg)}15%{transform:rotate(-6deg)}20%{transform:rotate(6deg)}25%{transform:rotate(0) scale(1)}}
-.demo-num{font-family:var(--font-m);font-size:1.5rem;font-weight:700;color:var(--accent)}
-.demo-lbl{font-size:.78rem;color:var(--text3);margin-top:.15rem}
-
-/* ══════ PRICING ══════ */
-.pricing{background:var(--bg2);position:relative;overflow:hidden}
-.pricing-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:300px;
-  background:radial-gradient(ellipse,rgba(0,229,160,.04),transparent 70%);filter:blur(60px);pointer-events:none}
-.pricing-head{text-align:center;margin-bottom:3rem}
-.pricing-head .label{justify-content:center}
-.pricing-head .sec-sub{margin:0 auto}
-
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;position:relative;z-index:2}
-
-.pc{padding:2.25rem 1.75rem;border-radius:18px;background:rgba(255,255,255,.015);border:1px solid var(--border);
-  position:relative;transition:all .5s var(--ease);overflow:hidden}
-.pc::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.015),transparent);opacity:0;transition:opacity .5s}
-.pc:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.pc:hover::before{opacity:1}
-.pc.feat{border-color:rgba(0,229,160,.2);background:rgba(0,229,160,.02);box-shadow:0 0 40px rgba(0,229,160,.04)}
-.pc.feat::after{content:'Most Popular';position:absolute;top:-1px;left:50%;transform:translateX(-50%);
-  padding:.3rem 1.1rem;border-radius:0 0 10px 10px;background:var(--accent);color:#050508;
-  font-family:var(--font-d);font-size:.68rem;font-weight:700;letter-spacing:.03em}
-.pc-name{font-family:var(--font-d);font-size:1.05rem;font-weight:700;margin-bottom:.2rem}
-.pc-ind{font-size:.78rem;color:var(--text3);margin-bottom:1.25rem}
-.pc-price{font-family:var(--font-d);font-size:3rem;font-weight:800;letter-spacing:-.03em;line-height:1}
-.pc-price span{font-size:.9rem;font-weight:400;color:var(--text3)}
-.pc-trial{display:inline-block;padding:.25rem .65rem;border-radius:7px;background:rgba(0,229,160,.06);color:var(--accent);
-  font-size:.75rem;font-weight:600;margin:.6rem 0 1.25rem;border:1px solid rgba(0,229,160,.08)}
-.pc-feat{list-style:none;margin-bottom:1.75rem}
-.pc-feat li{padding:.45rem 0;font-size:.82rem;color:var(--text2);display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(255,255,255,.02)}
-.pc-feat li::before{content:'';width:14px;height:14px;border-radius:50%;flex-shrink:0;
-  background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.15);
-  background-image:url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 24 24' fill='none' stroke='%2300e5a0' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
-.pc-btn{display:block;width:100%;padding:.8rem;border-radius:10px;text-align:center;
-  font-family:var(--font-d);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .4s var(--ease);border:none}
-.pc-btn.primary{background:var(--accent);color:#050508;box-shadow:0 0 20px var(--accentG)}
-.pc-btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 40px var(--accentG)}
-.pc-btn.outline{background:transparent;color:var(--text);border:1px solid var(--border2)}
-.pc-btn.outline:hover{border-color:var(--accent);background:rgba(0,229,160,.03)}
-.pricing-note{text-align:center;margin-top:2rem;font-size:.78rem;color:var(--text3)}
-
-/* ══════ ROI ══════ */
-.roi{background:var(--bg)}
-.roi-head{text-align:center;margin-bottom:2.5rem}
-.roi-head .label{justify-content:center}
-.roi-head .sec-sub{margin:0 auto}
-.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.roi-panel{padding:2rem;border-radius:18px;background:rgba(255,255,255,.015);border:1px solid var(--border);backdrop-filter:blur(8px)}
-.roi-panel h3{font-family:var(--font-d);font-size:.95rem;font-weight:700;margin-bottom:1.5rem}
-.roi-field{margin-bottom:1.75rem}
-.roi-fh{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
-.roi-fh label{font-size:.82rem;color:var(--text2)}
-.roi-fv{font-family:var(--font-m);font-size:.82rem;color:var(--accent);font-weight:700;padding:.15rem .5rem;border-radius:5px;background:rgba(0,229,160,.05)}
-input[type="range"]{width:100%;height:5px;-webkit-appearance:none;background:rgba(255,255,255,.06);border-radius:3px;outline:none}
-input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 12px var(--accentG);border:2px solid var(--bg)}
-.roi-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.025)}
-.roi-row:last-of-type{border-bottom:none}
-.roi-rl{font-size:.85rem;color:var(--text2)}.roi-rv{font-family:var(--font-m);font-weight:700}
-.roi-rv.g{color:var(--accent)}.roi-rv.r{color:var(--orange)}.roi-rv.b{font-size:1.4rem;color:var(--accent)}
-.roi-hl{margin-top:1.25rem;padding:1rem;border-radius:12px;background:rgba(0,229,160,.04);border:1px solid rgba(0,229,160,.08);text-align:center}
-.roi-hl p{font-family:var(--font-d);font-weight:700;color:var(--accent);font-size:.92rem}
-
-/* ══════ FAQ ══════ */
-.faq{background:var(--bg2)}
-.faq-head{text-align:center;margin-bottom:2.5rem}
-.faq-head .label{justify-content:center}
-.faq-list{max-width:680px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;padding:1.35rem 0;display:flex;justify-content:space-between;align-items:center;
-  background:none;border:none;cursor:pointer;font-family:var(--font-d);font-size:.95rem;font-weight:600;
-  color:var(--text);text-align:left;transition:color .3s;gap:1rem}
-.faq-q:hover{color:var(--accent)}
-.faq-ic{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.02);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .4s var(--ease)}
-.faq-ic svg{width:12px;height:12px;color:var(--text3);transition:transform .4s var(--ease)}
-.faq-item.open .faq-ic{background:rgba(0,229,160,.06);border-color:rgba(0,229,160,.15)}
-.faq-item.open .faq-ic svg{transform:rotate(45deg);color:var(--accent)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease),padding .5s var(--ease)}
-.faq-item.open .faq-a{max-height:300px;padding-bottom:1.25rem}
-.faq-a p{font-size:.88rem;color:var(--text2);line-height:1.75}
-
-/* ══════ FINAL CTA ══════ */
-.cta-final{padding:9rem 1.5rem;text-align:center;position:relative;overflow:hidden;z-index:2;background:var(--bg)}
-.cta-orb{position:absolute;top:50%;left:50%;width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,229,160,.08),transparent 60%);transform:translate(-50%,-50%);filter:blur(80px);
-  animation:ctaPulse 5s ease-in-out infinite}
-@keyframes ctaPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.7;transform:translate(-50%,-50%) scale(1.08)}}
-.cta-inner{position:relative;z-index:2}
-.cta-inner h2{font-family:var(--font-d);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem;line-height:1.1}
-.cta-inner p{font-size:1.05rem;color:var(--text2);max-width:460px;margin:0 auto 2.5rem;line-height:1.7}
-
-/* ══════ FOOTER ══════ */
-.footer{padding:2.5rem 1.5rem;border-top:1px solid var(--border);background:var(--bg);position:relative;z-index:2}
-.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-.footer-l{font-size:.78rem;color:var(--text3)}.footer-l a{color:var(--accent)}
-.footer-r{display:flex;gap:1.5rem}
-.footer-r a{font-size:.78rem;color:var(--text3);transition:color .3s}
-.footer-r a:hover{color:var(--text)}
-
-/* ══════ SCROLL REVEAL ══════ */
-[data-r]{opacity:0;transform:translateY(35px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-[data-r="l"]{transform:translateX(-40px)}
-[data-r="r"]{transform:translateX(40px)}
-[data-r="s"]{transform:scale(.94)}
-[data-r].vis{opacity:1;transform:translate(0) scale(1)}
-[data-d="1"]{transition-delay:.1s}[data-d="2"]{transition-delay:.2s}[data-d="3"]{transition-delay:.3s}[data-d="4"]{transition-delay:.4s}[data-d="5"]{transition-delay:.5s}
-
-/* ══════ RESPONSIVE ══════ */
-@media(max-width:900px){
-  .problem-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}
-  .roi-grid{grid-template-columns:1fr}
-  .hero-pills{flex-direction:column;gap:.5rem}
-}
-@media(max-width:768px){
-  .nav{padding:0 1.25rem}.nav-links{display:none}.mob-btn{display:flex;flex-direction:column}
-  .sec{padding:5rem 1.25rem}.hero{padding:6rem 1.25rem 3rem}
-  .prob-stats{grid-template-columns:1fr}
-  .footer-inner{flex-direction:column;gap:1rem;text-align:center}.footer-r{justify-content:center}
-  .demo-box{flex-direction:column;text-align:center;padding:1.25rem 1.5rem}
-  .phone{width:240px;height:460px}
-  .hero-floor{display:none}.hero-horizon{display:none}.hero-beam{display:none}
-}
+  /* ===== HAMBURGER MOBILE ===== */
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+  }
+  .mobile-toggle span {
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  @media (max-width: 768px) {
+    .mobile-toggle { display: flex; }
+  }
 </style>
+
+<!-- Vercel Analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
 
-<!-- AMBIENT BACKGROUND -->
-<div class="ambient">
-  <div class="ambient-orb a1"></div>
-  <div class="ambient-orb a2"></div>
-  <div class="ambient-orb a3"></div>
-  <div class="ambient-dots"></div>
-</div>
-
-<!-- SCROLL BAR -->
-<div class="scroll-bar" id="sbar"></div>
-
 <!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-    Conduit<b>AI</b>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#roi">ROI Calculator</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="tel:+15617303316">Call Demo</a></li>
-    <li><a href="https://app.conduitai.io/login" class="nav-cta">Start Free Trial</a></li>
-  </ul>
-  <button class="mob-btn" id="mobBtn" onclick="document.getElementById('mobMenu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg width="20" height="20" viewBox="0 0 512 512" fill="none">
+          <rect x="148" y="160" width="28" height="192" rx="14" fill="#fff" opacity="0.9"/>
+          <rect x="336" y="160" width="28" height="192" rx="14" fill="#fff" opacity="0.9"/>
+          <line x1="176" y1="256" x2="336" y2="256" stroke="#fff" strokeWidth="10" stroke-linecap="round" opacity="0.8"/>
+          <circle cx="256" cy="256" r="8" fill="#fff"/>
+          <path d="M 280 244 L 296 256 L 280 268" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        </svg>
+      </div>
+      Conduit<span class="accent">AI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="https://portal.conduitai.io" class="nav-cta">Start Free Trial →</a></li>
+    </ul>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
-
-<!-- Mobile menu -->
-<div class="mob-menu" id="mobMenu">
-  <a href="#how-it-works" onclick="document.getElementById('mobMenu').classList.remove('open')">How It Works</a>
-  <a href="#pricing" onclick="document.getElementById('mobMenu').classList.remove('open')">Pricing</a>
-  <a href="#roi" onclick="document.getElementById('mobMenu').classList.remove('open')">ROI Calculator</a>
-  <a href="#faq" onclick="document.getElementById('mobMenu').classList.remove('open')">FAQ</a>
-  <a href="tel:+15617303316" onclick="document.getElementById('mobMenu').classList.remove('open')">Call Demo</a>
-  <a href="https://app.conduitai.io/login" class="mob-cta">Start Free Trial</a>
-</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-floor"></div>
-  <div class="hero-horizon"></div>
-  <div class="hero-beam"></div><div class="hero-beam"></div><div class="hero-beam"></div>
-  <div class="hero-mote"></div><div class="hero-mote"></div><div class="hero-mote"></div><div class="hero-mote"></div>
-  <div class="hero-mote"></div><div class="hero-mote"></div><div class="hero-mote"></div><div class="hero-mote"></div>
-
-  <div class="hero-content" data-r data-hero>
-    <div class="hero-badge"><span class="live-dot"></span>Launch Week — 14-Day Free Trial, No Setup Fee</div>
-    <h1 class="hero-title">Stop Losing Customers<br>To <span class="g">Missed Calls</span></h1>
-    <p class="hero-sub">When you can't answer, we do. Our voice agent picks up, has a real conversation with your caller, captures their info, and sends it to you instantly.</p>
-    <div class="hero-actions">
-      <a href="https://app.conduitai.io/login" class="btn-p">Start Your Free Trial</a>
-      <a href="tel:+15617303316" class="btn-g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Hear It Live</a>
+  <div class="hero-badge reveal">
+    <span class="dot"></span>
+    Now accepting Founding 10 members
+  </div>
+  <h1 class="reveal reveal-delay-1">
+    Stop Losing Customers<br>To <span class="gradient-text">Missed Calls</span>
+  </h1>
+  <p class="hero-sub reveal reveal-delay-2">
+    When you can't answer, we do. Our AI voice agent picks up, has a real conversation, captures every lead, and sends it to you instantly.
+  </p>
+  <div class="hero-actions reveal reveal-delay-3">
+    <a href="https://portal.conduitai.io" class="btn-primary">Start Free Trial →</a>
+    <a href="#demo" class="btn-secondary">🎧 Hear the AI live</a>
+  </div>
+  <div class="hero-proof reveal reveal-delay-4">
+    <div class="stat">
+      <div class="stat-num">80%</div>
+      <div class="stat-label">of callers won't leave a voicemail</div>
     </div>
-    <div class="hero-pills">
-      <div class="pill"><span class="v">62%</span><span class="l">of calls go<br>unanswered</span></div>
-      <div class="pill"><span class="v">85%</span><span class="l">won't call<br>you back</span></div>
-      <div class="pill"><span class="v">24/7</span><span class="l">coverage,<br>no days off</span></div>
+    <div class="divider"></div>
+    <div class="stat">
+      <div class="stat-num">$120K</div>
+      <div class="stat-label">avg lost per year to missed calls</div>
+    </div>
+    <div class="divider"></div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">coverage, no breaks</div>
     </div>
   </div>
 </section>
 
-<!-- PROOF -->
-<div class="proof">
-  <div class="proof-track">
-    <span class="proof-item">Twilio</span><span class="proof-sep"></span>
-    <span class="proof-item">Vapi.ai</span><span class="proof-sep"></span>
-    <span class="proof-item">Supabase</span><span class="proof-sep"></span>
-    <span class="proof-item">Resend</span><span class="proof-sep"></span>
-    <span class="proof-item">Railway</span><span class="proof-sep"></span>
-    <span class="proof-item">Powered by industry-leading AI</span><span class="proof-sep"></span>
-    <span class="proof-item">Twilio</span><span class="proof-sep"></span>
-    <span class="proof-item">Vapi.ai</span><span class="proof-sep"></span>
-    <span class="proof-item">Supabase</span><span class="proof-sep"></span>
-    <span class="proof-item">Resend</span><span class="proof-sep"></span>
-    <span class="proof-item">Railway</span><span class="proof-sep"></span>
-    <span class="proof-item">Powered by industry-leading AI</span><span class="proof-sep"></span>
-  </div>
-</div>
-
 <!-- PROBLEM -->
-<section class="sec problem" id="problem">
-  <div class="sec-inner">
+<section class="problem" id="problem">
+  <div class="problem-inner">
+    <span class="section-tag reveal">The problem</span>
+    <h2 class="reveal">Your phone rings. Nobody picks up.<br>That customer is gone.</h2>
     <div class="problem-grid">
-      <div data-r="l">
-        <div class="label">The Problem</div>
-        <h2 class="sec-title">Your phone rings.<br>Nobody picks up.<br>That customer is <span style="color:var(--orange)">gone</span>.</h2>
-        <p class="sec-sub">Service businesses lose thousands every month to calls that go to voicemail. Most callers hang up. Most never call back.</p>
-        <div class="prob-stats">
-          <div class="prob-stat" data-r data-d="1"><div class="prob-val">$2K–$10K</div><div class="prob-lbl">lost revenue per month</div></div>
-          <div class="prob-stat" data-r data-d="2"><div class="prob-val">80%</div><div class="prob-lbl">won't leave a voicemail</div></div>
-          <div class="prob-stat" data-r data-d="3"><div class="prob-val">85%</div><div class="prob-lbl">never call back</div></div>
-          <div class="prob-stat" data-r data-d="4"><div class="prob-val">0</div><div class="prob-lbl">leads voicemail captures</div></div>
-        </div>
+      <div class="problem-card reveal">
+        <div class="icon">📞</div>
+        <h3>They won't call back</h3>
+        <p>80% of callers who hit voicemail never leave a message. They call the next business on Google instead.</p>
       </div>
-      <div class="prob-visual" data-r="r">
-        <div class="glow-ring"></div><div class="glow-ring"></div><div class="glow-ring"></div>
-        <div class="phone-wrap" id="phoneWrap">
-          <div class="phone" id="livePhone">
-            <div class="phone-notch"></div>
-            <div class="phone-status">
-              <span class="phone-time" id="phoneTime">12:00 AM</span>
-              <div class="phone-signals"><span></span><span></span><span></span><span></span></div>
-            </div>
-            <div class="phone-header">
-              <div class="phone-header-title">Conduit AI</div>
-              <div class="phone-header-sub">Live Call Recovery</div>
-            </div>
-            <div class="phone-live"><div class="phone-live-dot"></div><span class="phone-live-text">Monitoring</span></div>
-            
-            <!-- Sound wave -->
-            <div class="mc-wave" id="mcWave">
-              <div class="mc-wave-bar"></div><div class="mc-wave-bar"></div><div class="mc-wave-bar"></div>
-              <div class="mc-wave-bar"></div><div class="mc-wave-bar"></div><div class="mc-wave-bar"></div>
-              <div class="mc-wave-bar"></div><div class="mc-wave-bar"></div><div class="mc-wave-bar"></div>
-              <div class="mc-wave-bar"></div>
-            </div>
-
-            <!-- Incoming call overlay -->
-            <div class="mc-incoming" id="mcIncoming">
-              <div class="mc-incoming-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-              <div class="mc-incoming-text">Incoming Call</div>
-              <div class="mc-incoming-name" id="incomingName">Mike Thompson</div>
-            </div>
-
-            <!-- Notification container -->
-            <div class="mc-container" id="mcContainer"></div>
-
-            <!-- Typing indicator -->
-            <div class="mc-typing" id="mcTyping">
-              <div class="mc-typing-dot"></div><div class="mc-typing-dot"></div><div class="mc-typing-dot"></div>
-              <span class="mc-typing-label">Capturing lead info...</span>
-            </div>
-          </div>
-        </div>
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="icon">⏰</div>
+        <h3>Speed wins the deal</h3>
+        <p>78% of customers go with whoever answers first. If you're on a job, in a meeting, or closed — you lose.</p>
       </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="icon">💸</div>
+        <h3>It adds up fast</h3>
+        <p>Miss 5 calls a week at $200 average job value? That's $52,000 per year walking out the door.</p>
+      </div>
+    </div>
+    <div class="problem-stat reveal">
+      <div class="big-num">62%</div>
+      <div class="big-label">of calls to small businesses go unanswered during business hours. Your marketing brought them in — but nobody was there to close.</div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="sec hiw" id="how-it-works">
-  <div class="sec-inner">
-    <div class="hiw-head">
-      <div class="label" data-r>How It Works</div>
-      <h2 class="sec-title" data-r data-d="1">Three steps. Zero missed leads.</h2>
-      <p class="sec-sub" data-r data-d="2">Set up takes less than 48 hours. No hardware. No complicated software. Just more leads.</p>
-    </div>
+<section class="how" id="how">
+  <div class="how-inner">
+    <span class="section-tag reveal">How it works</span>
+    <h2 class="reveal">Three steps. Zero missed leads.</h2>
+    <p class="how-sub reveal">Set up in under 48 hours. No hardware. No complicated software.</p>
     <div class="steps">
-      <div class="step" data-r>
-        <div class="step-node">1</div>
+      <div class="step reveal">
+        <div class="step-num">1</div>
         <h3>Customer calls, you can't answer</h3>
-        <p>You're on a job, in a meeting, after hours, or all lines are busy. Instead of voicemail, the call forwards to your Conduit agent.</p>
+        <p>You're on a job, with a client, at lunch, or after hours. The call forwards to your Conduit AI agent.</p>
       </div>
-      <div class="step" data-r data-d="1">
-        <div class="step-node">2</div>
-        <h3>Our agent has a real conversation</h3>
-        <p>The caller talks to a natural-sounding voice that asks the right questions — name, number, what they need, how urgent it is.</p>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">2</div>
+        <h3>AI has a real conversation</h3>
+        <p>Our voice agent greets them by your business name, asks the right questions, and captures their info naturally.</p>
       </div>
-      <div class="step" data-r data-d="2">
-        <div class="step-node">3</div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">3</div>
         <h3>You get the lead instantly</h3>
-        <p>Within seconds, you receive an email with everything: caller details, service needed, estimated value, and urgency level. Ready to close.</p>
+        <p>Name, number, what they need — delivered to you via text and email within seconds. Follow up when ready.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- DEMO -->
-<section class="sec demo" id="demo">
-  <div class="demo-glow"></div>
+<section class="demo" id="demo">
   <div class="demo-inner">
-    <div class="label" data-r>Try It Right Now</div>
-    <h2 class="sec-title" data-r data-d="1">Hear the agent for yourself</h2>
-    <p class="sec-sub" style="margin:0 auto;" data-r data-d="2">Call our demo line. No signup needed. See exactly what your customers would experience.</p>
-    <a href="tel:+15617303316" class="demo-box" data-r="s" data-d="3">
-      <div class="demo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-      <div><div class="demo-num">(561) 730-3316</div><div class="demo-lbl">Call now — it takes 30 seconds</div></div>
-    </a>
+    <span class="section-tag reveal">Try it yourself</span>
+    <h2 class="reveal">Hear the agent for yourself</h2>
+    <p class="demo-sub reveal">Call now. It answers immediately. No signup needed.</p>
+    <div class="demo-card reveal">
+      <div class="demo-phone">
+        <a href="tel:+15617303316">(561) 730-3316</a>
+      </div>
+      <p class="demo-desc">
+        This is a live Conduit AI agent configured for a sample business. Call it right now — hear how natural the conversation is, how it captures your info, and what your callers would experience.
+      </p>
+      <div class="demo-features">
+        <div class="demo-feature"><span class="check">✓</span> Real AI conversation</div>
+        <div class="demo-feature"><span class="check">✓</span> Captures caller info</div>
+        <div class="demo-feature"><span class="check">✓</span> Answers 24/7</div>
+        <div class="demo-feature"><span class="check">✓</span> Sounds natural</div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="industries-inner">
+    <span class="section-tag reveal">Who we serve</span>
+    <h2 class="reveal">Built for service businesses</h2>
+    <div class="industry-grid">
+      <a href="salon-barbershop.html" class="industry-card reveal">
+        <div class="ind-icon">💈</div>
+        <div><h3>Salons & Barbershops</h3><p>Capture bookings while you're with clients</p></div>
+      </a>
+      <a href="hvac-plumbing.html" class="industry-card reveal reveal-delay-1">
+        <div class="ind-icon">🔧</div>
+        <div><h3>HVAC & Plumbing</h3><p>Never miss an emergency call on the job</p></div>
+      </a>
+      <a href="dental-medical.html" class="industry-card reveal reveal-delay-2">
+        <div class="ind-icon">🦷</div>
+        <div><h3>Dental & Medical</h3><p>Recover new patient leads the front desk misses</p></div>
+      </a>
+      <a href="roofing-contractors.html" class="industry-card reveal reveal-delay-3">
+        <div class="ind-icon">🏗️</div>
+        <div><h3>Roofing & Contractors</h3><p>Capture leads while you're on the roof</p></div>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- FOUNDING 10 -->
-<style>
-.founding-section{padding:80px 20px;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#0a0a0a 100%);position:relative;overflow:hidden;border-top:1px solid rgba(255,215,0,.2);border-bottom:1px solid rgba(255,215,0,.2)}
-.founding-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 50%,rgba(255,215,0,.05) 0%,transparent 70%);pointer-events:none}
-.founding-badge{display:inline-block;background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;padding:6px 18px;border-radius:50px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px;animation:pulse-gold 2s ease-in-out infinite}
-@keyframes pulse-gold{0%,100%{box-shadow:0 0 10px rgba(255,215,0,.3)}50%{box-shadow:0 0 25px rgba(255,215,0,.6)}}
-.founding-title{font-size:clamp(32px,5vw,52px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.1}
-.founding-title span{background:linear-gradient(135deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.founding-subtitle{font-size:18px;color:#999;max-width:600px;margin:0 auto 40px;line-height:1.6}
-.founding-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,215,0,.2);border-radius:20px;padding:48px 40px;max-width:520px;margin:0 auto;position:relative;backdrop-filter:blur(10px)}
-.founding-card::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,#FFD700,transparent)}
-.founding-spots{display:flex;justify-content:center;gap:8px;margin-bottom:30px}
-.spot{width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,215,0,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#666}
-.spot.taken{background:linear-gradient(135deg,#FFD700,#FFA500);border-color:#FFD700;color:#000}
-.spot.available{border-color:rgba(255,215,0,.4);color:#FFD700}
-.founding-price{margin:24px 0}
-.founding-price .original{font-size:18px;color:#666;text-decoration:line-through;margin-bottom:4px}
-.founding-price .sale{font-size:56px;font-weight:800;color:#fff;line-height:1}
-.founding-price .sale span{font-size:20px;color:#999;font-weight:400}
-.founding-price .savings{display:inline-block;background:rgba(255,215,0,.1);color:#FFD700;padding:4px 14px;border-radius:50px;font-size:14px;font-weight:600;margin-top:8px}
-.founding-features{list-style:none;padding:0;margin:30px 0;text-align:left}
-.founding-features li{padding:10px 0;color:#ccc;font-size:15px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.05)}
-.founding-features li:last-child{border-bottom:none}
-.founding-features li::before{content:'\2726';color:#FFD700;font-size:12px;flex-shrink:0}
-.founding-cta{display:inline-block;background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;padding:18px 48px;border-radius:12px;font-size:18px;font-weight:700;text-decoration:none;transition:all .3s ease;width:100%;box-sizing:border-box;text-align:center}
-.founding-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,215,0,.3)}
-.founding-urgency{margin-top:16px;font-size:13px;color:#999}
-.founding-urgency strong{color:#FFD700}
-</style>
-<section class="founding-section" id="founding">
-<div style="text-align:center">
-<div class="founding-badge">Limited Launch Offer</div>
-<h2 class="founding-title">Join the <span>Founding 10</span></h2>
-<p class="founding-subtitle">Lock in our lowest price ever. Only 10 founding member spots available at this rate. Once they are gone, they are gone forever.</p>
-<div class="founding-card">
-<div class="founding-spots">
-<div class="spot taken">1</div>
-<div class="spot available">2</div>
-<div class="spot available">3</div>
-<div class="spot available">4</div>
-<div class="spot available">5</div>
-<div class="spot available">6</div>
-<div class="spot available">7</div>
-<div class="spot available">8</div>
-<div class="spot available">9</div>
-<div class="spot available">10</div>
-</div>
-<p style="font-size:13px;color:#FFD700;margin-bottom:24px;font-weight:600">1 of 10 spots claimed</p>
-<div class="founding-price">
-<div class="original">$2,388/year ($199/mo)</div>
-<div class="sale">$999 <span>/year</span></div>
-<div class="savings">Save $1,389 - 58% off</div>
-</div>
-<ul class="founding-features">
-<li>AI voice agent custom-built for your business</li>
-<li>24/7 call capture - nights, weekends, holidays</li>
-<li>Real-time lead notifications via email and SMS</li>
-<li>Up to 75 leads/month included</li>
-<li>Full setup and configuration - done for you</li>
-<li>Priority support and direct founder access</li>
-<li>Lock in this rate for life - never increases</li>
-</ul>
-<a href="https://buy.stripe.com/9B68wIg8N97K0qu1Nqe3e03" class="founding-cta">Claim Your Founding Spot - $999/year</a>
-<p class="founding-urgency"><strong>9 spots remaining.</strong> Price goes to $199/mo after all spots are filled.</p>
-</div>
-</div>
-</section>
-<!-- PRICING -->
-<section class="sec pricing" id="pricing">
-  <div class="pricing-glow"></div>
-  <div class="sec-inner">
-    <div class="pricing-head">
-      <div class="label" data-r>Pricing</div>
-      <h2 class="sec-title" data-r data-d="1">14 days free. No setup fee. No risk.</h2>
-      <p class="sec-sub" data-r data-d="2">One recovered job pays for months of service.</p>
+<section class="founding" id="founding">
+  <div class="founding-inner">
+    <span class="section-tag reveal">Exclusive offer</span>
+    <h2 class="reveal">Join the Founding 10</h2>
+    <p class="founding-sub reveal">Be one of the first 10 businesses on Conduit AI and lock in benefits forever.</p>
+    <div class="founding-card reveal">
+      <div class="founding-perks">
+        <div class="founding-perk"><span class="check">✓</span> Locked-in pricing for life</div>
+        <div class="founding-perk"><span class="check">✓</span> Priority 1-on-1 onboarding</div>
+        <div class="founding-perk"><span class="check">✓</span> Direct line to the founder</div>
+        <div class="founding-perk"><span class="check">✓</span> Shape the product roadmap</div>
+        <div class="founding-perk"><span class="check">✓</span> Featured as a case study</div>
+        <div class="founding-perk"><span class="check">✓</span> 14-day free trial</div>
+      </div>
+      <div class="founding-slots">7 of 10 spots remaining</div>
+      <a href="https://portal.conduitai.io" class="btn-primary" style="display:inline-flex;">Claim Your Spot →</a>
     </div>
-    <div class="pricing-grid">
-      <div class="pc" data-r data-d="1">
-        <div class="pc-name">Beauty & Wellness</div>
-        <div class="pc-ind">Salons, barbershops, spas, med spas</div>
-        <div class="pc-price">$199<span>/mo</span></div>
-        <div class="pc-trial">First 14 days free</div>
-        <ul class="pc-feat">
-          <li>Up to 50 leads/mo included</li><li>$3/lead after 50</li>
-          <li>Custom booking scripts</li><li>24/7 call capture</li>
-          <li>Email lead notifications</li><li>Analytics dashboard</li>
-        </ul>
-        <a href="https://app.conduitai.io/login" class="pc-btn outline">Start Free Trial</a>
-      </div>
-      <div class="pc feat" data-r data-d="2">
-        <div class="pc-name">Home Services</div>
-        <div class="pc-ind">HVAC, plumbing, electrical, roofing, contractors</div>
-        <div class="pc-price">$349<span>/mo</span></div>
-        <div class="pc-trial">First 14 days free</div>
-        <ul class="pc-feat">
-          <li>Up to 75 leads/mo included</li><li>$5/lead after 75</li>
-          <li>Emergency call prioritization</li><li>Job estimate capture</li>
-          <li>24/7 call capture</li><li>Revenue recovery tracking</li>
-          <li>Analytics dashboard</li><li>Priority support</li>
-        </ul>
-        <a href="https://app.conduitai.io/login" class="pc-btn primary">Start Free Trial</a>
-      </div>
-      <div class="pc" data-r data-d="3">
-        <div class="pc-name">Medical & Enterprise</div>
-        <div class="pc-ind">Dental, medical offices, multi-location</div>
-        <div class="pc-price" style="font-size:2.2rem">Custom</div>
-        <div class="pc-trial" style="background:rgba(139,92,246,.05);color:#a78bfa;border-color:rgba(139,92,246,.08)">Tailored pricing</div>
-        <ul class="pc-feat">
-          <li>Custom lead volume</li><li>HIPAA-conscious workflows</li>
-          <li>Patient intake scripts</li><li>Multi-location support</li>
-          <li>Dedicated account manager</li><li>Custom integrations</li>
-        </ul>
-        <a href="https://app.conduitai.io/login" class="pc-btn outline">Contact Sales</a>
-      </div>
-    </div>
-    <p class="pricing-note" data-r>14-day free trial · No setup fee · No contracts · Cancel anytime · Live in 24–48 hours</p>
   </div>
 </section>
 
-<!-- ROI -->
-<section class="sec roi" id="roi">
-  <div class="sec-inner">
-    <div class="roi-head">
-      <div class="label" data-r>ROI Calculator</div>
-      <h2 class="sec-title" data-r data-d="1">See what you're leaving on the table</h2>
-      <p class="sec-sub" data-r data-d="2">Adjust the sliders. Watch the math.</p>
-    </div>
-    <div class="roi-grid" data-r="s" data-d="3">
-      <div class="roi-panel">
-        <h3>Your Numbers</h3>
-        <div class="roi-field"><div class="roi-fh"><label>Missed calls per week</label><span class="roi-fv" id="rv1">15</span></div><input type="range" min="5" max="60" value="15" id="rc" oninput="calcROI()"></div>
-        <div class="roi-field"><div class="roi-fh"><label>Average job value ($)</label><span class="roi-fv" id="rv2">$500</span></div><input type="range" min="100" max="5000" step="50" value="500" id="rj" oninput="calcROI()"></div>
-        <div class="roi-field"><div class="roi-fh"><label>Close rate (%)</label><span class="roi-fv" id="rv3">30%</span></div><input type="range" min="10" max="70" value="30" id="rr" oninput="calcROI()"></div>
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <span class="section-tag reveal">Pricing</span>
+    <h2 class="reveal">14 days free. No setup fee. No risk.</h2>
+    <p class="pricing-sub reveal">One recovered job pays for months of service.</p>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-label">Beauty & Wellness</div>
+        <p class="price-name">Salons, barbershops, spas, med spas</p>
+        <div class="price-amount">$199<span>/mo</span></div>
+        <p class="price-trial">First 14 days free</p>
+        <ul class="price-features">
+          <li>Up to 50 leads/mo included</li>
+          <li>$3/lead after 50</li>
+          <li>Custom booking scripts</li>
+          <li>24/7 call capture</li>
+          <li>Email lead notifications</li>
+          <li>Analytics dashboard</li>
+        </ul>
+        <a href="https://portal.conduitai.io" class="price-btn">Start Free Trial</a>
       </div>
-      <div class="roi-panel">
-        <h3>Your Potential</h3>
-        <div class="roi-row"><span class="roi-rl">Missed calls / month</span><span class="roi-rv" id="rm">60</span></div>
-        <div class="roi-row"><span class="roi-rl">Revenue lost / month</span><span class="roi-rv r" id="rl">-$9,000</span></div>
-        <div class="roi-row"><span class="roi-rl">Leads captured (97%)</span><span class="roi-rv" id="rcap">58</span></div>
-        <div class="roi-row"><span class="roi-rl">Revenue recovered</span><span class="roi-rv g" id="rrec">+$8,730</span></div>
-        <div class="roi-row"><span class="roi-rl">Conduit cost</span><span class="roi-rv" style="color:var(--text3)" id="rcost">-$349</span></div>
-        <div class="roi-row"><span class="roi-rl">Net profit</span><span class="roi-rv b" id="rp">+$8,381</span></div>
-        <div class="roi-hl"><p id="rhl">That's a 2,401% return on investment</p></div>
+      <div class="price-card popular reveal reveal-delay-1">
+        <div class="price-label">Home Services</div>
+        <p class="price-name">HVAC, plumbing, electrical, roofing</p>
+        <div class="price-amount">$349<span>/mo</span></div>
+        <p class="price-trial">First 14 days free</p>
+        <ul class="price-features">
+          <li>Up to 75 leads/mo included</li>
+          <li>$5/lead after 75</li>
+          <li>Emergency call prioritization</li>
+          <li>Job estimate capture</li>
+          <li>24/7 call & SMS capture</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://portal.conduitai.io" class="price-btn">Start Free Trial</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc" id="calculator">
+  <div class="calc-inner">
+    <span class="section-tag reveal">ROI calculator</span>
+    <h2 class="reveal">See what you're leaving on the table</h2>
+    <p class="calc-sub reveal">Move the sliders. See the math.</p>
+    <div class="calc-card reveal">
+      <div class="calc-row">
+        <div class="calc-label">Missed calls per week</div>
+        <input type="range" class="calc-slider" id="missedCalls" min="1" max="30" value="5">
+        <div class="calc-value" id="missedCallsVal">5 calls</div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-label">Average job value</div>
+        <input type="range" class="calc-slider" id="jobValue" min="50" max="2000" value="300" step="50">
+        <div class="calc-value" id="jobValueVal">$300</div>
+      </div>
+      <div class="calc-result">
+        <div class="big" id="calcResult">$78,000</div>
+        <div class="sub">estimated revenue lost per year</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="sec faq" id="faq">
-  <div class="sec-inner">
-    <div class="faq-head">
-      <div class="label" data-r>FAQ</div>
-      <h2 class="sec-title" data-r data-d="1">Common questions</h2>
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <span class="section-tag reveal">FAQ</span>
+    <h2 class="reveal">Common questions</h2>
+    
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        How long does setup take?
+        <span class="arrow">+</span>
+      </div>
+      <div class="faq-a">Most businesses are live within 24–48 hours. You sign up, we configure your voice agent with your business info and custom scripts, integrate with your phone number, test everything, and go live. No hardware or phone number changes needed.</div>
     </div>
-    <div class="faq-list">
-      <div class="faq-item" data-r><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does setup take?<div class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><p>Most businesses are live within 24–48 hours. You sign up, we configure your voice agent with your business info and custom scripts, integrate with your phone number, test everything, and go live. No hardware or phone number changes needed.</p></div></div>
-      <div class="faq-item" data-r data-d="1"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does this replace my receptionist?<div class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><p>No. Conduit works alongside your existing team. We catch everything they can't — after-hours, overflow when lines are busy, lunch breaks, weekends, and holidays. Think of us as your safety net.</p></div></div>
-      <div class="faq-item" data-r data-d="2"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What happens after the 14-day trial?<div class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><p>You'll be asked to add a payment method. If it's not for you, just cancel — no questions, no contracts, no fees. Most clients stay because the leads pay for the service many times over.</p></div></div>
-      <div class="faq-item" data-r data-d="3"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What industries do you support?<div class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><p>HVAC, plumbing, electrical, roofing, construction, salons, barbershops, spas, med spas, dental, medical, and more. Each agent is custom-trained with scripts specific to your industry.</p></div></div>
-      <div class="faq-item" data-r data-d="4"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it actually sound natural?<div class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><p>Callers often don't realize they're not talking to a person. Call our demo line yourself: (561) 730-3316. Try it right now.</p></div></div>
-      <div class="faq-item" data-r data-d="5"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need to change my phone number?<div class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button><div class="faq-a"><p>No. We assign a dedicated Conduit number. You set up simple call forwarding so unanswered calls route to your agent. Step-by-step instructions provided for your carrier.</p></div></div>
+    
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Does this replace my receptionist?
+        <span class="arrow">+</span>
+      </div>
+      <div class="faq-a">No. Conduit works alongside your existing team. We catch everything they can't — after-hours, overflow when lines are busy, lunch breaks, weekends, and holidays. Think of us as your backup that never sleeps.</div>
+    </div>
+    
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Will callers know it's AI?
+        <span class="arrow">+</span>
+      </div>
+      <div class="faq-a">Our voice agent sounds remarkably natural. It uses your business name, understands context, and handles conversation flow like a trained receptionist. Most callers don't realize they're speaking with AI.</div>
+    </div>
+    
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        What if I get no missed calls?
+        <span class="arrow">+</span>
+      </div>
+      <div class="faq-a">You probably get more than you think. Studies show businesses miss 28-62% of calls. Plus with our 14-day free trial, there's zero risk. If you don't find value, cancel anytime — no fees, no hassle.</div>
+    </div>
+    
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Can I customize what the AI says?
+        <span class="arrow">+</span>
+      </div>
+      <div class="faq-a">Absolutely. We build custom scripts tailored to your business, industry, services, and personality. The AI greets callers with your business name and asks the exact questions you'd ask.</div>
+    </div>
+    
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        How do I receive the leads?
+        <span class="arrow">+</span>
+      </div>
+      <div class="faq-a">Leads are sent instantly via text and email the moment the call ends. You also get a full dashboard to view call history, listen to recordings, and track your ROI.</div>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="cta-final">
-  <div class="cta-orb"></div>
-  <div class="cta-inner" data-r="s">
-    <h2>Every missed call is a<br>missed <span style="color:var(--accent)">opportunity</span></h2>
-    <p>Start your free 14-day trial. No credit card. No setup fee. See leads roll in before you pay a dime.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="https://app.conduitai.io/login" class="btn-p">Start Your Free Trial</a>
-      <a href="tel:+15617303316" class="btn-g">Call Demo: (561) 730-3316</a>
-    </div>
+<section class="final-cta">
+  <h2 class="reveal">Every missed call is a<br><span class="gradient-text">missed opportunity</span></h2>
+  <p class="reveal reveal-delay-1">Start your 14-day free trial. No credit card. No setup fee. No risk.</p>
+  <div class="reveal reveal-delay-2">
+    <a href="https://portal.conduitai.io" class="btn-primary">Start Free Trial →</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-l">&copy; 2026 Conduit AI LLC &middot; <a href="mailto:callflowai.leads@gmail.com">Contact</a></div>
-    <div class="footer-r">
-      <a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="blog.html">Blog</a><a href="affiliates.html">Affiliates</a>
-    </div>
+    <div class="footer-copy">© 2026 Conduit AI LLC. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="affiliates.html">Affiliates</a></li>
+      <li><a href="mailto:support@conduitai.io">Contact</a></li>
+    </ul>
   </div>
 </footer>
 
 <script>
-// ─── Scroll reveal ───
-const obs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('vis');obs.unobserve(i.target)}})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('[data-r]').forEach(el=>obs.observe(el));
-document.querySelector('[data-hero]')?.classList.add('vis');
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-// ─── Phone 3D tilt ───
-const pw=document.getElementById('phoneWrap');
-if(pw&&window.innerWidth>768){
-  pw.parentElement.addEventListener('mousemove',e=>{
-    const r=pw.parentElement.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    pw.style.transform=`rotateY(${x*12}deg) rotateX(${-y*8}deg)`;
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
   });
-  pw.parentElement.addEventListener('mouseleave',()=>{pw.style.transform=''});
-}
 
-// ─── Nav + scroll bar ───
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('s',scrollY>50);
-  document.getElementById('sbar').style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%';
-},{passive:true});
+  // Calculator
+  const missedCalls = document.getElementById('missedCalls');
+  const jobValue = document.getElementById('jobValue');
+  const missedCallsVal = document.getElementById('missedCallsVal');
+  const jobValueVal = document.getElementById('jobValueVal');
+  const calcResult = document.getElementById('calcResult');
 
-// ─── LIVE PHONE SIMULATION ───
-(function(){
-  const leads = [
-    {name:'Mike Thompson',detail:'AC not cooling — emergency repair',value:'$2,400',type:'HVAC'},
-    {name:'Sarah Chen',detail:'Full house re-stucco — $12K job',value:'$12,000',type:'Stucco'},
-    {name:'Amanda Foster',detail:'Office renovation consultation',value:'$8,500',type:'General'},
-    {name:'Carlos Medina',detail:'Plumbing emergency — premium rate',value:'$1,800',type:'Plumbing'},
-    {name:'Jessica Williams',detail:'Roof inspection after storm',value:'$6,200',type:'Roofing'},
-    {name:'David Park',detail:'Full bathroom remodel quote',value:'$15,000',type:'Remodel'},
-    {name:'Maria Gonzalez',detail:'AC installation — new unit',value:'$4,500',type:'HVAC'},
-    {name:'Robert Kim',detail:'Commercial electrical upgrade',value:'$9,800',type:'Electrical'},
-    {name:'Lisa Chang',detail:'Kitchen renovation design',value:'$22,000',type:'Remodel'},
-    {name:'James Wilson',detail:'Emergency pipe burst repair',value:'$3,200',type:'Plumbing'},
-    {name:'Emily Santos',detail:'Balayage + cut appointment',value:'$280',type:'Salon'},
-    {name:'Nicole Adams',detail:'Bridal party hair — 6 people',value:'$1,200',type:'Salon'},
-  ];
-
-  const container=document.getElementById('mcContainer');
-  const incoming=document.getElementById('mcIncoming');
-  const incomingName=document.getElementById('incomingName');
-  const typing=document.getElementById('mcTyping');
-  const wave=document.getElementById('mcWave');
-  const phoneLive=document.querySelector('.phone-live-text');
-  const timeEl=document.getElementById('phoneTime');
-  let idx=0, cards=[], running=false;
-
-  // Update phone clock
-  function updateClock(){
-    const now=new Date();
-    let h=now.getHours(),m=now.getMinutes(),ap=h>=12?'PM':'AM';
-    h=h%12||12; m=m<10?'0'+m:m;
-    if(timeEl) timeEl.textContent=h+':'+m+' '+ap;
+  function updateCalc() {
+    const calls = parseInt(missedCalls.value);
+    const value = parseInt(jobValue.value);
+    const annual = calls * value * 52;
+    missedCallsVal.textContent = calls + ' calls';
+    jobValueVal.textContent = '$' + value.toLocaleString();
+    calcResult.textContent = '$' + annual.toLocaleString();
   }
-  updateClock(); setInterval(updateClock,30000);
+  missedCalls.addEventListener('input', updateCalc);
+  jobValue.addEventListener('input', updateCalc);
 
-  function createCard(lead){
-    const div=document.createElement('div');
-    div.className='mc';
-    div.innerHTML=`
-      <div class="mc-captured">Captured</div>
-      <div class="mc-top"><span class="mc-name">${lead.name}</span><span class="mc-badge">Missed</span></div>
-      <div class="mc-detail">${lead.detail}</div>
-      <div class="mc-time">Just now · Est. ${lead.value}</div>`;
-    return div;
-  }
-
-  async function simulateCall(){
-    if(running) return;
-    running=true;
-    const lead=leads[idx%leads.length]; idx++;
-
-    // Phase 1: Incoming call (1.5s)
-    if(phoneLive) phoneLive.textContent='Incoming Call';
-    incomingName.textContent=lead.name;
-    incoming.classList.add('active');
-    await sleep(1500);
-
-    // Phase 2: Agent answering — show wave (2s)
-    incoming.classList.remove('active');
-    if(phoneLive) phoneLive.textContent='Agent Speaking';
-    wave.classList.add('active');
-    await sleep(2000);
-
-    // Phase 3: Capturing info — typing dots (1.2s)
-    wave.classList.remove('active');
-    if(phoneLive) phoneLive.textContent='Processing';
-    typing.classList.add('vis');
-    await sleep(1200);
-    typing.classList.remove('vis');
-
-    // Phase 4: Add captured card
-    if(phoneLive) phoneLive.textContent='Lead Captured';
-    const card=createCard(lead);
-    container.prepend(card);
-    cards.unshift(card);
-    await sleep(50);
-    card.classList.add('vis');
-    await sleep(300);
-    card.classList.add('captured');
-
-    // Remove oldest if >3 cards
-    while(cards.length>3){
-      const old=cards.pop();
-      old.classList.add('exit');
-      await sleep(400);
-      old.remove();
-    }
-
-    // Phase 5: Back to monitoring
-    await sleep(800);
-    if(phoneLive) phoneLive.textContent='Monitoring';
-    running=false;
-  }
-
-  function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
-
-  // Start simulation when phone is visible
-  const phoneObs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){
-    // Initial delay then start cycling
-    setTimeout(simulateCall,800);
-    setInterval(()=>{if(!running)simulateCall()},7000);
-    phoneObs.unobserve(i.target);
-  }})},{threshold:.2});
-  const ph=document.getElementById('livePhone');
-  if(ph) phoneObs.observe(ph);
-})();
-
-// ─── ROI ───
-function calcROI(){
-  const c=+document.getElementById('rc').value,j=+document.getElementById('rj').value,r=+document.getElementById('rr').value;
-  document.getElementById('rv1').textContent=c;document.getElementById('rv2').textContent='$'+j.toLocaleString();document.getElementById('rv3').textContent=r+'%';
-  const m=c*4,lost=m*j*(r/100),cap=Math.round(m*.97),rec=Math.round(cap*j*(r/100)),cost=349,prof=rec-cost,pct=Math.round(prof/cost*100);
-  document.getElementById('rm').textContent=m;document.getElementById('rl').textContent='-$'+lost.toLocaleString();
-  document.getElementById('rcap').textContent=cap;document.getElementById('rrec').textContent='+$'+rec.toLocaleString();
-  document.getElementById('rcost').textContent='-$'+cost;document.getElementById('rp').textContent='+$'+prof.toLocaleString();
-  document.getElementById('rhl').textContent="That's a "+pct.toLocaleString()+'% return on investment';
-}
-calcROI();
-
-// ─── Smooth anchor ───
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 </script>
+
 </body>
 </html>
